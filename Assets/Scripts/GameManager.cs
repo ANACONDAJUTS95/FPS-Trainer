@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 
     public void Awake()
     {
-        instance = this; 
+        instance = this;
     }
 
     // Start is called before the first frame update
@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void PlayerDied()

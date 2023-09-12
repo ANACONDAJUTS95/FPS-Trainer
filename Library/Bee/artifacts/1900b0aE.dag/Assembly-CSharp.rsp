@@ -363,6 +363,7 @@
 "Assets/Materials/Udemy FPS Assets/Starfield Skybox/Demo/Script/LookCamera.cs"
 "Assets/Scripts/BulletController.cs"
 "Assets/Scripts/CameraController.cs"
+"Assets/Scripts/CheckpointController.cs"
 "Assets/Scripts/EnemyController.cs"
 "Assets/Scripts/EnemyHealthController.cs"
 "Assets/Scripts/GameManager.cs"
