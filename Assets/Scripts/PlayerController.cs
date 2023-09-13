@@ -22,6 +22,14 @@ public class PlayerController : MonoBehaviour
     public GameObject bullet;
     public Transform firePoint;
 
+    // Ease for switching weapons
+    public Gun activeGun;
+
+    //ADS
+    public Transform adsPoint, gunHolder;
+    private Vector3 gunStartPos;
+    public float adsSpeed = 2f;
+
     private void Awake()
     {
         instance = this;
@@ -30,7 +38,9 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        UIController.instance.ammoText.text = "AMMO: " + activeGun.currentAmmo;
+
+        gunStartPos = gunHolder.localPosition;
     }
 
     // Update is called once per frame
@@ -98,7 +108,8 @@ public class PlayerController : MonoBehaviour
         camTrans.rotation = Quaternion.Euler(camTrans.rotation.eulerAngles + new Vector3(-mouseInput.y, 0f, 0f));
 
         //Handle Shooting
-        if (Input.GetMouseButtonDown(0))
+        //single shot
+        if (Input.GetMouseButtonDown(0) && activeGun.fireCounter <= 0)
         {
             RaycastHit hit;
             if (Physics.Raycast(camTrans.position, camTrans.forward, out hit, 50f))
@@ -115,12 +126,57 @@ public class PlayerController : MonoBehaviour
             }
 
 
-            Instantiate(bullet, firePoint.position, firePoint.rotation);
+            //Instantiate(bullet, firePoint.position, firePoint.rotation);
+            FireShot();
+        }
+
+        // repeating shots
+        if (Input.GetMouseButton(0) && activeGun.canAutoFire)
+        {
+            if (activeGun.fireCounter <= 0)
+            {
+                FireShot();
+            }
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            CameraController.instance.ZoomIn(activeGun.zoomAmmount);
+        }
+
+        if (Input.GetMouseButton(1))
+        {
+            gunHolder.position = Vector3.MoveTowards(gunHolder.position, adsPoint.position, adsSpeed * Time.deltaTime);
+        } 
+        
+        else
+        {
+            gunHolder.localPosition = Vector3.MoveTowards(gunHolder.localPosition, gunStartPos, adsSpeed * Time.deltaTime);
+        }
+
+        if (Input.GetMouseButtonUp(1))
+        {
+            CameraController.instance.ZoomOut();
         }
 
         
         anim.SetFloat("moveSpeed", moveInput.magnitude);
         anim.SetBool("onGround", canJump);
     
+    }
+
+    public void FireShot()
+    {
+        if (activeGun.currentAmmo > 0)
+        {
+            activeGun.currentAmmo--;
+
+            Instantiate(activeGun.bullet, firePoint.position, firePoint.rotation);
+
+            activeGun.fireCounter = activeGun.fireRate;
+
+            UIController.instance.ammoText.text = "AMMO: " + activeGun.currentAmmo;
+        }
+        
     }
 }

@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     public float waitAfterDying = 2f;
 
+
     private void Awake()
     {
         instance = this;

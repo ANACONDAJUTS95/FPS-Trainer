@@ -367,6 +367,7 @@
 "Assets/Scripts/EnemyController.cs"
 "Assets/Scripts/EnemyHealthController.cs"
 "Assets/Scripts/GameManager.cs"
+"Assets/Scripts/Gun.cs"
 "Assets/Scripts/PlayerController.cs"
 "Assets/Scripts/PlayerHealthController.cs"
 "Assets/Scripts/UIController.cs"

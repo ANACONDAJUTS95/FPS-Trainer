@@ -8,6 +8,8 @@ public class CheckpointController : MonoBehaviour
     public string cpName;
     public static List<CheckpointController> checkpoints = new List<CheckpointController>();
 
+    private bool isDestroyed = false; // Flag to track if the object is destroyed
+
     private void Awake()
     {
         checkpoints.Add(this);
@@ -16,7 +18,7 @@ public class CheckpointController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (PlayerPrefs.HasKey(SceneManager.GetActiveScene().name + "_lastCheckpoint"))
+        if (!isDestroyed && PlayerPrefs.HasKey(SceneManager.GetActiveScene().name + "_lastCheckpoint"))
         {
             string lastCheckpoint = PlayerPrefs.GetString(SceneManager.GetActiveScene().name + "_lastCheckpoint");
             if (string.IsNullOrEmpty(lastCheckpoint))
@@ -26,13 +28,13 @@ public class CheckpointController : MonoBehaviour
                 CheckpointController randomCheckpoint = checkpoints[randomIndex];
                 PlayerController.instance.transform.position = randomCheckpoint.transform.position;
                 Physics.SyncTransforms();
-                Debug.Log("Player starting at a random checkpoint.");
+                Debug.Log("Player respawning at a random checkpoint.");
             }
             else if (lastCheckpoint == cpName)
             {
                 PlayerController.instance.transform.position = transform.position;
                 Physics.SyncTransforms();
-                Debug.Log("Player starting at " + cpName);
+                Debug.Log("Player respawning at " + cpName);
             }
         }
     }
@@ -40,11 +42,15 @@ public class CheckpointController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L))
+        if (!isDestroyed && Input.GetKeyDown(KeyCode.L))
         {
             PlayerPrefs.SetString(SceneManager.GetActiveScene().name + "_lastCheckpoint", "");
         }
     }
 
-
+    // Handle object destruction
+    private void OnDestroy()
+    {
+        isDestroyed = true;
+    }
 }
