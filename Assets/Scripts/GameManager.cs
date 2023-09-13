@@ -9,12 +9,12 @@ public class GameManager : MonoBehaviour
 
     public float waitAfterDying = 2f;
 
-    public void Awake()
+    private void Awake()
     {
         instance = this;
     }
 
-    // Start is called before the first frame update
+    // Start is called before the first update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -23,19 +23,18 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     public void PlayerDied()
     {
-        StartCoroutine(PlayerDiedCo());
+        StartCoroutine(PlayerDiedCo()); 
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public IEnumerator PlayerDiedCo()
     {
         yield return new WaitForSeconds(waitAfterDying);
-
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
