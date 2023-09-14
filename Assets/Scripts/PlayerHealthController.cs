@@ -18,6 +18,7 @@ public class PlayerHealthController : MonoBehaviour
     {
         currentHealth = maxHealth;
 
+        
         UIController.instance.healthSlider.maxValue = maxHealth;
         UIController.instance.healthSlider.value = currentHealth;
         UIController.instance.healthText.text = "HEALTH: " + currentHealth + "/" + maxHealth;
@@ -32,6 +33,8 @@ public class PlayerHealthController : MonoBehaviour
     public void DamagePlayer(int damageAmount)
     {
         currentHealth -= damageAmount;
+
+        UIController.instance.ShowDamage();
 
         //Funtcion so that health won't go below 0
         //currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
