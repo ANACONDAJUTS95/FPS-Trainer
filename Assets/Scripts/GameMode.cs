@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameMode : MonoBehaviour
 {
-    public string headShot, bodyShot;
+    public string headShot, bodyShot, headShotGOAP, bodyShotGOAP;
 
     // Start is called before the first frame update
     void Start()
@@ -31,13 +31,13 @@ public class GameMode : MonoBehaviour
 
     public void HeadshotGOAP()
     {
-        //SceneManager.LoadScene();
+        SceneManager.LoadScene(headShotGOAP);
         Debug.Log("Not yet available");
     }
 
     public void BodyshotGOAP()
     {
-        //SceneManager.LoadScene();
+        SceneManager.LoadScene(bodyShotGOAP);
         Debug.Log("Not yet available");
     }
 }

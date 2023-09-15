@@ -765,6 +765,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   headShot: Headshot
   bodyShot: Bodyshot
+  headShotGOAP: HeadshotGOAP
+  bodyShotGOAP: BodyshotGOAP
 --- !u!1 &987862012
 GameObject:
   m_ObjectHideFlags: 0
