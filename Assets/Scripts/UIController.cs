@@ -13,6 +13,8 @@ public class UIController : MonoBehaviour
     public Image damageEffect;
     public float damageAlpha = .25f, damageFadeSpeed = 2f;
 
+    public GameObject pauseScreen;
+
     public void Awake()
     {
         instance = this; 
