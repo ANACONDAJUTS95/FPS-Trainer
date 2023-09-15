@@ -45,6 +45,8 @@ public class PlayerHealthController : MonoBehaviour
 
             currentHealth = 0;
             GameManager.instance.PlayerDied();
+
+            AudioManager.instance.StopBGM();
         }
 
         UIController.instance.healthSlider.value = currentHealth;
