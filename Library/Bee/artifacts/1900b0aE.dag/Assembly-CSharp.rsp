@@ -377,6 +377,7 @@
 "Assets/Scripts/CheckpointController.cs"
 "Assets/Scripts/EnemyController.cs"
 "Assets/Scripts/EnemyHealthController.cs"
+"Assets/Scripts/EnemySpawnManager.cs"
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/GameMode.cs"
 "Assets/Scripts/Gun.cs"
@@ -384,7 +385,9 @@
 "Assets/Scripts/PauseScreen.cs"
 "Assets/Scripts/PlayerController.cs"
 "Assets/Scripts/PlayerHealthController.cs"
+"Assets/Scripts/RandomEnemySpawn.cs"
 "Assets/Scripts/RandomSpawn.cs"
+"Assets/Scripts/RespawnEnemy.cs"
 "Assets/Scripts/UIController.cs"
 -langversion:9.0
 

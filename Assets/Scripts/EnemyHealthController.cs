@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class EnemyHealthController : MonoBehaviour
 {
-    public int currentHealth = 5;
+    public int maxHealth = 5;
+    public int currentHealth;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    // Add an event to notify when the enemy dies
+    public delegate void EnemyDeathAction();
+    public event EnemyDeathAction OnEnemyDeath;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        currentHealth = maxHealth;
     }
 
     public void DamageEnemy(int damageAmount)
@@ -24,7 +22,20 @@ public class EnemyHealthController : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            Destroy(gameObject);
+            // Notify that the enemy has died
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        // Deactivate the enemy GameObject
+        gameObject.SetActive(false);
+
+        // Trigger the respawn event
+        if (OnEnemyDeath != null)
+        {
+            OnEnemyDeath();
         }
     }
 }
