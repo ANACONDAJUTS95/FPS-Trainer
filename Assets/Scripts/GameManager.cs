@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(waitAfterDying);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
     }
 
     public void PauseUnpause()
