@@ -101,7 +101,7 @@ Transform:
   - {fileID: 8439588912604005083}
   - {fileID: 3687936847022232754}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &1211724229669613216
 CapsuleCollider:
@@ -241,7 +241,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.6527231, y: 1.3429673, z: 0.5695162}
   m_Center: {x: -0.004679084, y: -0.3120904, z: 0.048652172}

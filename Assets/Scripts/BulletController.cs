@@ -56,4 +56,36 @@ public class BulletController : MonoBehaviour
         Destroy(gameObject);
         Instantiate(impactEffect, transform.position + (transform.forward * (-moveSpeed * Time.deltaTime)), transform.rotation);
     }
+
+    //making sure the bullet will hit
+    void FixedUpdate()
+    {
+        StartCoroutine(Predict());
+    }
+
+    IEnumerator Predict()
+    {
+        Vector3 prediction = transform.position + theRB.velocity * Time.fixedDeltaTime;
+
+        RaycastHit hit2;
+        int layerMask = ~LayerMask.GetMask("Bullet");
+        Debug.DrawLine(transform.position, prediction);
+
+        if (Physics.Linecast(transform.position, prediction, out hit2, layerMask))
+        {
+            transform.position = hit2.point;
+            theRB.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
+            theRB.isKinematic = true;
+            yield return 0;
+            OnTriggerEnterFixed(hit2.collider);
+        }
+    }
+
+    void OnTriggerEnterFixed(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }
