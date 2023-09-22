@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class BulletController : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class BulletController : MonoBehaviour
     public int damage = 1;
 
     public bool damageEnemy, damagePlayer;
+
+    public AudioClip bulletSound; // Add an AudioClip field for the collect sound
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +38,7 @@ public class BulletController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.gameObject.tag == "Enemy" && damageEnemy)
         {
             //Destroy(other.gameObject);
@@ -53,8 +57,29 @@ public class BulletController : MonoBehaviour
             PlayerHealthController.instance.DamagePlayer(damage);
         }
 
-        Destroy(gameObject);
+
+        //Destroy(gameObject);
+        //Instantiate(impactEffect, transform.position + (transform.forward * (-moveSpeed * Time.deltaTime)), transform.rotation);
+
+        // Play the collect sound when colliding with any object
+        PlayBulletSound();
+
+        DestroyBullet();
+    }
+
+    private void PlayBulletSound()
+    {
+        if (bulletSound != null)
+        {
+            // Create an audio source to play the collect sound
+            AudioSource.PlayClipAtPoint(bulletSound, transform.position);
+        }
+    }
+
+    private void DestroyBullet()
+    {
         Instantiate(impactEffect, transform.position + (transform.forward * (-moveSpeed * Time.deltaTime)), transform.rotation);
+        Destroy(gameObject);
     }
 
     //making sure the bullet will hit

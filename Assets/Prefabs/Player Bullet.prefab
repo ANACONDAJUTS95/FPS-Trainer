@@ -128,6 +128,8 @@ MonoBehaviour:
   damage: 2
   damageEnemy: 1
   damagePlayer: 0
+  bulletSound: {fileID: 8300000, guid: 8f8c324ab32244442b286c94a79753f3, type: 3}
+  audioMixerGroup: {fileID: -6729872792639438655, guid: 17ae913eca660334b8e992afbdfdbe16, type: 2}
 --- !u!54 &882597382067930379
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -277,7 +279,7 @@ AudioSource:
   m_GameObject: {fileID: 3209864970369629157}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -1271329865653740102, guid: 17ae913eca660334b8e992afbdfdbe16, type: 2}
+  OutputAudioMixerGroup: {fileID: -6729872792639438655, guid: 17ae913eca660334b8e992afbdfdbe16, type: 2}
   m_audioClip: {fileID: 8300000, guid: 8f8c324ab32244442b286c94a79753f3, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.9
@@ -291,7 +293,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
