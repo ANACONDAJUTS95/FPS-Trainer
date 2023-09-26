@@ -61,6 +61,9 @@ public class GameManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
 
             Time.timeScale = 0f;
+
+            PlayerController.instance.footstepFast.Stop();
+            PlayerController.instance.footstepSlow.Stop();
         }
     }
 }

@@ -32,6 +32,10 @@ public class PlayerHealthController : MonoBehaviour
 
     public void DamagePlayer(int damageAmount)
     {
+        //Player is hurt
+        int randomIndex = Random.Range(0, 3); // Generate a random index (0 to 2 for hurt sounds)
+        AudioManager.instance.PlaySFX(randomIndex);
+
         currentHealth -= damageAmount;
 
         UIController.instance.ShowDamage();
@@ -47,6 +51,12 @@ public class PlayerHealthController : MonoBehaviour
             GameManager.instance.PlayerDied();
 
             AudioManager.instance.StopBGM();
+            
+            //Player Dead SFX
+            AudioManager.instance.PlaySFX(3);
+
+            //Stop soundeffect hurt so that it won't overlap with Dead sfx
+            AudioManager.instance.StopSFX(randomIndex);
         }
 
         UIController.instance.healthSlider.value = currentHealth;

@@ -129,7 +129,6 @@ MonoBehaviour:
   damageEnemy: 1
   damagePlayer: 0
   bulletSound: {fileID: 8300000, guid: 8f8c324ab32244442b286c94a79753f3, type: 3}
-  audioMixerGroup: {fileID: -6729872792639438655, guid: 17ae913eca660334b8e992afbdfdbe16, type: 2}
 --- !u!54 &882597382067930379
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -286,12 +285,12 @@ AudioSource:
   m_Pitch: 1
   Loop: 0
   Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
+  Spatialize: 1
+  SpatializePostEffects: 1
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 1.01
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0

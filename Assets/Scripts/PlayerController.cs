@@ -33,6 +33,9 @@ public class PlayerController : MonoBehaviour
     //Muzzle Flash
     public GameObject muzzleFlash;
 
+    //AudioSource
+    public AudioSource footstepFast, footstepSlow;
+
     private void Awake()
     {
         instance = this;
@@ -89,7 +92,12 @@ public class PlayerController : MonoBehaviour
             //Jump Control
             if (Input.GetKeyDown(KeyCode.Space) && canJump)
             {
+                int randomIndex = Random.Range(5, 7); // Generate a random index (0 to 2 for hurt sounds)
+                
                 moveInput.y = jumpPower;
+
+                //SFX for jumping
+                AudioManager.instance.PlaySFX(randomIndex);
             }
 
 
