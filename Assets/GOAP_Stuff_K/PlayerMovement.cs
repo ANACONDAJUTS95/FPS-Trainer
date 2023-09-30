@@ -24,17 +24,41 @@ public class PlayerMovement : MonoBehaviour
     public Transform firePoint;
 
     // bool checkers for player actions: // can add more in the future
-    public bool isInAir = false;
-    public bool isPlayerMoving = false;
-    public bool isPlayerShooting = false;
-    public bool isPlayerZoomedIn = false;
+    public bool 
+        isPlayerInAir = false,
+        isPlayerWalking = false,
+        isPlayerRunning = false,
+        isPlayerShooting = false,
+        isPlayerZoomedIn = false;
+
+    private void ResetIsPlayerInAir()
+    {
+        isPlayerInAir = false;
+    }
+
+    private void ResetIsPlayerWalking()
+    {
+        isPlayerWalking = false;
+    }
+
+    private void ResetIsPlayerRunning()
+    {
+        isPlayerRunning = false;
+    }
+
     private void ResetIsPlayerShooting()
     {
         isPlayerShooting = false;
     }
-    // add other reseters here, later
-    
 
+    private void ResetIsPlayerZoomedIn()
+    {
+        isPlayerZoomedIn = false;
+    }
+    // add other reseters here, later
+
+    //////////////////////////////////////////////////////////////////////////////////////
+    
     // Ease for switching weapons
     public Gun activeGun;
 
@@ -51,12 +75,14 @@ public class PlayerMovement : MonoBehaviour
         instance = this;
     }
 
+
     // Start is called before the first frame update
     void Start()
     {
         UIController.instance.ammoText.text = "AMMO: " + activeGun.currentAmmo;
 
         gunStartPos = gunHolder.localPosition;
+
     }
     // IsInAir  IsPlayerMoving IsPlayerShooting IsPlayerZoomedIn 
 
@@ -80,11 +106,15 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 moveInput = moveInput * walkSpeed;
+                isPlayerWalking = true;
+                isPlayerRunning = false;
             }
-
             else
             {
                 moveInput = moveInput * moveSpeed;
+                isPlayerWalking = false;
+                isPlayerRunning = true;
+                // check for isPlayerRunning here
             }
 
             moveInput.y = yStore;
@@ -104,6 +134,7 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) && canJump)
             {
                 moveInput.y = jumpPower;
+                isPlayerInAir = true;
             }
 
 
@@ -150,7 +181,7 @@ public class PlayerMovement : MonoBehaviour
                 //Instantiate(bullet, firePoint.position, firePoint.rotation);
                 FireShot();
                 isPlayerShooting = true; // player is shooting //find a way to reset isPlayerShooting to false, later
-                Invoke("ResetIsPlayerShooting", 2.0f); // to reset the isPlayerShooting to false,
+                Invoke("ResetIsPlayerShooting", 1.0f); // to reset the isPlayerShooting to false,
             }
 
             // repeating shots

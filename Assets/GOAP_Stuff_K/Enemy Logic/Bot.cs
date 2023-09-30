@@ -4,27 +4,24 @@ using System.Collections.Generic;
 
 public class Bot : EnemyParent
 {
-	/* 
-	Kyle's things to do:
-	1. Fix animations and the model rotation of the bot
-	2. create logics for actions
-	3. create preconditions for those actions
-	3. create after effects for those actions
-	4. create a stamina system for the bot, to avoid action spamming
-	5. Fix the detection range of the bot
-	6. 
-	*/
 
-
-	// Use this for initialization
+	// Initialization of the stats of the Bot
 	void Start()
 	{
-		health = 50;
-		movementSpeed = 20;
+		health = 100;
+		movementSpeed = 5; // change this for the movement speed of the bot
+
+		regenRate = 5f; //orig: 3f
+		stamina = 600f; //orig: 600f
+		maxStamina = 1000f; //orig: 500f
 
 		terminalSpeed = movementSpeed / 10;
 		initialSpeed = (movementSpeed / 10) / 2;
 		acceleration = (movementSpeed / 10) / 4;
+
+		minDist = 11f;
+
+		setSpeed(movementSpeed);
 
 		animator = GetComponent<Animator>();
 		player = GameObject.Find("Player").GetComponent<PlayerMovement>(); 
@@ -40,7 +37,7 @@ public class Bot : EnemyParent
 	{
 		HashSet<KeyValuePair<string, object>> goal = new HashSet<KeyValuePair<string, object>>();
 		goal.Add(new KeyValuePair<string, object>("damagePlayer", true));
-		goal.Add(new KeyValuePair<string, object>("stayAlive", true));
+		goal.Add(new KeyValuePair<string, object>("evadePlayer", true));
 		return goal;
 	}
 }
