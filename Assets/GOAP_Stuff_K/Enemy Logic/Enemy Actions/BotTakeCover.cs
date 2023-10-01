@@ -4,10 +4,12 @@ public class BotTakeCover : GOAPAction
 {
     private bool moved = false;
     private bool isStrafing = false;
-    private float strafeSpeed = 3f;
+    private float strafeSpeed = 4f;
     private Vector3 strafeDirection;
     private float strafeDuration = 2.0f;
     private float strafeTimer = 0f;
+
+    private Animator currAnim; // Reference to the Animator component
 
     private void SetMovedToTrue()
     {
@@ -17,11 +19,20 @@ public class BotTakeCover : GOAPAction
     public BotTakeCover()
     {
         addEffect("evadePlayer", true);
-        cost = 400f; //change later
+        cost = 400f; // Change later
+    }
+
+    void Start()
+    {
+        // Get a reference to the Animator component
+        currAnim = GetComponentInParent<Animator>();
     }
 
     void Update()
     {
+        // Get a reference to the Bot component
+        Bot currBot = GetComponentInParent<Bot>();
+
         if (isStrafing)
         {
             // Move the bot left or right based on strafeDirection
@@ -33,9 +44,16 @@ public class BotTakeCover : GOAPAction
             if (strafeTimer >= strafeDuration)
             {
                 isStrafing = false;
+                strafeTimer = 0f; // Reset the timer
             }
         }
+
+        // Set isMoving based on whether strafing or moving forward
+        bool isMoving = isStrafing || (currBot.stamina >= (500 - cost) && !isStrafing);
+        currAnim.SetBool("isMoving", isMoving);
     }
+
+
 
     public override void reset()
     {
@@ -78,9 +96,17 @@ public class BotTakeCover : GOAPAction
         RaycastHit hit;
         if (Physics.Raycast(transform.position, direction, out hit, 2.0f))
         {
-            return false; // There's an obstacle, cannot strafe in this direction
+            // There's an obstacle, reverse the direction
+            ReverseStrafeDirection();
+            return false;
         }
         return true; // No obstacle, can strafe in this direction
+    }
+
+    private void ReverseStrafeDirection()
+    {
+        // Reverse the strafe direction
+        strafeDirection = -strafeDirection;
     }
 
     public override bool perform(GameObject agent)
@@ -90,9 +116,6 @@ public class BotTakeCover : GOAPAction
         if (currBot.stamina >= (500 - cost) && !isStrafing)
         {
             currBot.stamina -= (500 - cost);
-
-            Animator currAnim = GetComponentInParent<Animator>();
-            currAnim.SetBool("isMoving", true);
 
             // Determine the strafe direction (left or right)
             int strafeDirectionIndex = Random.Range(0, 2);
@@ -108,17 +131,29 @@ public class BotTakeCover : GOAPAction
             // Check if the bot can strafe in the chosen direction
             if (!CanStrafe(strafeDirection))
             {
-                // If there's an obstacle, strafe in the opposite direction
-                strafeDirection = -strafeDirection;
+                // If there's an obstacle, reverse the direction
+                ReverseStrafeDirection();
             }
 
             // Reset the strafe timer
             strafeTimer = 0f;
 
             isStrafing = true;
+            currAnim.SetBool("isMoving", true); // Set isMoving to true when strafing starts
 
             Debug.Log("BOT is strafing!");
             SetMovedToTrue();
+            return true;
+        }
+        else if (isStrafing)
+        {
+            // Check if the bot can continue strafing in the current direction
+            if (!CanStrafe(strafeDirection))
+            {
+                // If there's an obstacle, reverse the direction
+                ReverseStrafeDirection();
+            }
+
             return true;
         }
         else
