@@ -36,9 +36,13 @@ public class PlayerController : MonoBehaviour
     //AudioSource
     public AudioSource footstepFast, footstepSlow;
 
+    public int bulletsFired = 0; // Tracks bullets fired
+    private UIController uiController;
+
     private void Awake()
     {
         instance = this;
+        uiController = UIController.instance;
     }
 
     // Start is called before the first frame update
@@ -52,7 +56,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!UIController.instance.pauseScreen.activeInHierarchy)
+        if (!UIController.instance.pauseScreen.activeInHierarchy && !UIController.instance.endGameUI.activeInHierarchy)
         {
 
             //moveInput.x = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
@@ -193,6 +197,10 @@ public class PlayerController : MonoBehaviour
 
             activeGun.fireCounter = activeGun.fireRate;
 
+            bulletsFired++; // Increment the bullet count
+
+            // Update the UI with the current bullet count
+            uiController.SetBulletsUsed(bulletsFired);
             UIController.instance.ammoText.text = "AMMO: " + activeGun.currentAmmo;
 
             muzzleFlash.SetActive(true);
