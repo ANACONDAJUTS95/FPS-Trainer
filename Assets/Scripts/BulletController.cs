@@ -26,7 +26,10 @@ public class BulletController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        theRB.velocity = transform.forward * moveSpeed;
+     
+        theRB.velocity = transform.forward * moveSpeed; // Set the bullet's velocity
+        theRB.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+
 
         lifeTime -= Time.deltaTime;
 

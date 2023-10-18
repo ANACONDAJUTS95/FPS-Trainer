@@ -34,9 +34,17 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySFX(int sfxNumber)
     {
-        soundEffects[sfxNumber].Stop();
-        soundEffects[sfxNumber].Play();
+        if (sfxNumber >= 0 && sfxNumber < soundEffects.Length)
+        {
+            soundEffects[sfxNumber].Stop();
+            soundEffects[sfxNumber].Play();
+        }
+        else
+        {
+            Debug.LogError("Invalid sound effect index: " + sfxNumber);
+        }
     }
+
 
     public void StopSFX(int sfxNumber)
     {

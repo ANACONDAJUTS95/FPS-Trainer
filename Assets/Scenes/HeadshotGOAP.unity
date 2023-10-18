@@ -3797,6 +3797,10 @@ MonoBehaviour:
   damageAlpha: 1
   damageFadeSpeed: 0.5
   pauseScreen: {fileID: 509606541}
+  endGameUI: {fileID: 0}
+  enemiesEliminatedText: {fileID: 0}
+  bulletsUsedText: {fileID: 0}
+  totalTimeText: {fileID: 0}
 --- !u!1 &798717479 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6267944536708171645, guid: 045adfbbc4f36374f9dda0e788e40ca4, type: 3}
@@ -4417,7 +4421,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 4
+  m_Speed: 7.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 540
@@ -4574,6 +4578,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 300
   target: {fileID: 0}
+  bullet: {fileID: 3209864970369629157, guid: 40a262d1e23626145b48e257cc80adf9, type: 3}
+  firePoint: {fileID: 1735897253}
+  fireRate: 0.3
 --- !u!1 &1036495802 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1296605364670726625, guid: 9bac10e691f2b134e8a762aac4cb9231, type: 3}

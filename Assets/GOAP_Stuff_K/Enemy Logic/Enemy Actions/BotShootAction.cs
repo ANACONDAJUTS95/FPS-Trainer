@@ -5,6 +5,13 @@ public class BotShootAction : GOAPAction
     private bool attacked = false;
     private GameObject player;
 
+    //Variables for firing
+    public GameObject bullet;
+    public Transform firePoint;
+
+    public float fireRate;
+    private float fireCount;
+
     public BotShootAction()
     {
         addEffect("damagePlayer", true);
@@ -80,10 +87,21 @@ public class BotShootAction : GOAPAction
         }
         currBot.animator.SetTrigger("fireShot");
         Debug.Log("BOT is shooting!");
+                
+        //Making the Enemy Fire
+        fireCount -= Time.deltaTime;
+
+        if (fireCount <= 0)
+        {
+            fireCount = fireRate;
+
+            Instantiate(bullet, firePoint.position, firePoint.rotation);
+        }
 
         SetAttackedToTrue();
 
         return true;
+
     }
 
     private void SetAttackedToTrue()
