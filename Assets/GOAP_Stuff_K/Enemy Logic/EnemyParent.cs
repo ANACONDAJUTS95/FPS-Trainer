@@ -3,10 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 
 public abstract class EnemyParent : MonoBehaviour, IGOAP
-{ //THIS IS TO BE DEVELOPED FIRST PA ~ kyle
+{
 
 	public Animator animator;
-	public Rigidbody rigidBody;
 	public BoxCollider boxCollider;
 	public SphereCollider sphereCollider;
 	public PlayerMovement player;
@@ -23,10 +22,39 @@ public abstract class EnemyParent : MonoBehaviour, IGOAP
 	protected bool loop = false;
 	protected float maxStamina;
 
+	// Add an event to notify when the enemy dies
+	public delegate void EnemyDeathAction();
+	public event EnemyDeathAction OnEnemyDeath;
+
 	// Use this for initialization
 	void Start()
 	{
 		animator = GetComponent<Animator>();
+	}
+
+	private void Die()
+	{
+		// Find the enemy GameObject by its name
+		GameObject enemyGameObjectHS = GameObject.Find("Enemy_GOAP_HS Prefab(Clone)"); //add (Clone)
+		GameObject enemyGameObjectBS = GameObject.Find("Enemy_GOAP_BS Prefab(Clone)"); //add (Clone)
+
+		// Deactivate the enemy GameObject
+		if (enemyGameObjectBS == null)
+        {
+			enemyGameObjectHS.SetActive(false);
+		}
+		else
+        {
+			enemyGameObjectBS.SetActive(false);
+		}
+		
+		
+
+		// Trigger the respawn event
+		if (OnEnemyDeath != null)
+		{
+			OnEnemyDeath();
+		}
 	}
 
 	// Update is called once per frame
@@ -39,6 +67,11 @@ public abstract class EnemyParent : MonoBehaviour, IGOAP
 		else
 		{
 			stamina = maxStamina;
+		}
+
+		if (health == 0)
+		{
+			Die();
 		}
 	}
 
@@ -96,10 +129,10 @@ public abstract class EnemyParent : MonoBehaviour, IGOAP
 
 			setSpeed(movementSpeed);
 
-			if (initialSpeed < terminalSpeed)
-			{
-				//initialSpeed += acceleration; // comment this out, this is the initial speed
-			}
+			//if (initialSpeed < terminalSpeed)
+			//{
+			//	//initialSpeed += acceleration; // comment this out, this is the initial speed
+			//}
 
 			Vector3 newPosition = moveDirection.normalized * movementSpeed * Time.deltaTime;
 			transform.position += newPosition;

@@ -4,14 +4,15 @@ using System.Collections.Generic;
 
 public class Bot : EnemyParent
 {
+	
 
 	// Initialization of the stats of the Bot
 	void Start()
 	{
 		health = 100;
-		movementSpeed = 5; // change this for the movement speed of the bot
+		movementSpeed = 8; // change this for the movement speed of the bot
 
-		regenRate = 5f; //orig: 3f
+		regenRate = 6f; //orig: 3f
 		stamina = 600f; //orig: 600f
 		maxStamina = 1000f; //orig: 500f
 
@@ -27,6 +28,7 @@ public class Bot : EnemyParent
 		player = GameObject.Find("Player").GetComponent<PlayerMovement>(); 
 
 	}
+
 
 	public override void passiveRegen()
 	{

@@ -125,7 +125,7 @@ MonoBehaviour:
   lifeTime: 5
   theRB: {fileID: 882597382067930379}
   impactEffect: {fileID: 4068587315633177971, guid: a8f0886b32676da458a4bae8d2ca285a, type: 3}
-  damage: 10
+  damage: 5
   damageEnemy: 0
   damagePlayer: 1
   bulletSound: {fileID: 8300000, guid: 74488784b83484f439169d5de6e20214, type: 3}

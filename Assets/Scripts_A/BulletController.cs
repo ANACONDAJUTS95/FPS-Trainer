@@ -17,19 +17,24 @@ public class BulletController : MonoBehaviour
 
     public AudioClip bulletSound; // Add an AudioClip field for the collect sound
 
+    private int maxHealth, currentHealth;
+
+    // For GOAP:
+    [SerializeField] 
+
     // Start is called before the first frame update
     void Start()
     {
         
     }
-
-    // Update is called once per frame
     void Update()
     {
-     
-        theRB.velocity = transform.forward * moveSpeed; // Set the bullet's velocity
+
+        //theRB.velocity = transform.forward * moveSpeed; // Set the bullet's velocity
         theRB.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
 
+        // Instead, apply force in the forward direction.
+        theRB.AddForce(transform.forward * moveSpeed, ForceMode.VelocityChange);
 
         lifeTime -= Time.deltaTime;
 
@@ -41,7 +46,21 @@ public class BulletController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // GOAP OnTriggers:
+        if (other.gameObject.tag == "Enemy_GOAP_HS")
+        {
+            other.transform.parent.GetComponent<Bot>().health = 0;
+            Debug.Log("HEADSHOT hit");
+        }
 
+        if (other.gameObject.tag == "Enemy_GOAP_BS")
+        {
+            other.transform.parent.GetComponent<Bot>().health -= damage; // damage to the bodyshot, check inspector(bullet prefab)
+            Debug.Log("BODYSHOT hit");
+        }
+
+
+        // Generic AI OnTriggers:
         if (other.gameObject.tag == "Enemy" && damageEnemy)
         {
             //Destroy(other.gameObject);

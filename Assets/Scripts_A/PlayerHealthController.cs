@@ -40,7 +40,7 @@ public class PlayerHealthController : MonoBehaviour
 
         UIController.instance.ShowDamage();
 
-        Debug.Log("Player has been DAMAGED" + currentHealth);
+        Debug.Log("Player has been DAMAGED " + currentHealth);
 
         //Funtcion so that health won't go below 0
         //currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);

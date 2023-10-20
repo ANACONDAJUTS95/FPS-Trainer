@@ -4,9 +4,9 @@ public class BotTakeCover : GOAPAction
 {
     private bool moved = false;
     private bool isStrafing = false;
-    private float strafeSpeed = 4f;
+    private float strafeSpeed = 4.7f;
     private Vector3 strafeDirection;
-    private float strafeDuration = 2.0f;
+    private float strafeDuration = 1f;
     private float strafeTimer = 0f;
 
     private Animator currAnim; // Reference to the Animator component
@@ -19,7 +19,7 @@ public class BotTakeCover : GOAPAction
     public BotTakeCover()
     {
         addEffect("evadePlayer", true);
-        cost = 400f; // Change later
+        cost = 600f; // must have higher cost to avoid spam
     }
 
     void Start()
@@ -53,8 +53,6 @@ public class BotTakeCover : GOAPAction
         currAnim.SetBool("isMoving", isMoving);
     }
 
-
-
     public override void reset()
     {
         moved = false;
@@ -76,6 +74,7 @@ public class BotTakeCover : GOAPAction
         target = GameObject.Find("Player");
         Bot currBot = agent.GetComponent<Bot>();
         bool isPlayerShooting = target.GetComponent<PlayerMovement>().isPlayerShooting;
+        //bool isPlayerRunning = target.GetComponent<PlayerMovement>().isPlayerRunning;
 
         if (target != null && currBot.stamina >= (500 - cost) && isPlayerShooting)
         {

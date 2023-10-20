@@ -15,7 +15,7 @@ public class BotShootAction : GOAPAction
     public BotShootAction()
     {
         addEffect("damagePlayer", true);
-        cost = 300f;
+        cost = 100f; // most priority action
     }
 
     public override void reset()
@@ -38,7 +38,7 @@ public class BotShootAction : GOAPAction
     {
         target = GameObject.Find("Player");
         Bot currBot = agent.GetComponent<Bot>();
-        if (target != null && currBot.stamina >= (500 - cost))
+        if (target != null && currBot.stamina >= (500 - cost)) // 500 is a magic num
         {
             // Check if there's an obstacle in the line of sight before shooting
             Vector3 direction = target.transform.position - agent.transform.position;
@@ -53,6 +53,7 @@ public class BotShootAction : GOAPAction
                 Debug.Log("BotShootAction precondition is a go");
                 Debug.Log("Bot heard or saw the player.");
                 return true;
+
             }
             else
             {
@@ -73,8 +74,6 @@ public class BotShootAction : GOAPAction
         Bot currBot = agent.GetComponent<Bot>();
         currBot.stamina -= (500 - cost);
 
-        // Create logic here for damaging the player, and shooting sound and vfx
-
         if (player == null)
         {
             player = GameObject.Find("Player");
@@ -84,18 +83,13 @@ public class BotShootAction : GOAPAction
         {
             // Make the bot constantly look at the player's position
             agent.transform.LookAt(player.transform);
-        }
-        currBot.animator.SetTrigger("fireShot");
-        Debug.Log("BOT is shooting!");
-                
-        //Making the Enemy Fire
-        fireCount -= Time.deltaTime;
 
-        if (fireCount <= 0)
-        {
+            //Making the Enemy Fire
             fireCount = fireRate;
+            Debug.Log("BOT is shooting!");
+            currBot.animator.SetTrigger("fireShot");
 
-            Instantiate(bullet, firePoint.position, firePoint.rotation);
+            Instantiate(bullet, firePoint.position, firePoint.rotation); 
         }
 
         SetAttackedToTrue();
