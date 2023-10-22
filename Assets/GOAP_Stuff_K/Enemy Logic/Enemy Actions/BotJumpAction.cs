@@ -1,43 +1,31 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class BotJumpAction : GOAPAction
+public class BotJumpAction : GOAPAction // NOW WORKING ATM!
 {
-    private bool jumped = false;
-    
-    private Animator currAnim; // Reference to the Animator component
-
-    private void SetJumpedToTrue()
-    {
-        jumped = true;
-    }
+    private bool jumping = false;
+    private float jumpHeight = 1.0f; // Adjust this to control the jump height
+    private float jumpSpeed = 5.0f; // Adjust this to control the jump speed
+    private Vector3 jumpStartPosition;
+    private Vector3 jumpEndPosition;
+    private float jumpStartTime;
 
     public BotJumpAction()
     {
         addEffect("evadePlayer", true);
-        cost = 500f; // Change later
+        cost = 100f; // Most prioritized action
     }
-
-    void Start()
-    {
-        // Get a reference to the Animator component
-        currAnim = GetComponentInParent<Animator>();
-    }
-
-    void Update()
-    {
-        
-    }
-
 
     public override void reset()
     {
-        jumped = false;
+        jumping = false;
         target = null;
     }
 
     public override bool isDone()
     {
-        return jumped;
+        return !jumping;
     }
 
     public override bool requiresInRange()
@@ -49,24 +37,50 @@ public class BotJumpAction : GOAPAction
     {
         target = GameObject.Find("Player");
         Bot currBot = agent.GetComponent<Bot>();
-        bool isPlayerShooting = target.GetComponent<PlayerMovement>().isPlayerShooting;
 
+        bool isPlayerZoomedIn = target.GetComponent<PlayerMovement>().isPlayerZoomedIn;
 
-        return true;
-
+        if (target != null && currBot.stamina >= (500 - cost) && isPlayerZoomedIn)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
-
 
     public override bool perform(GameObject agent)
     {
         Bot currBot = agent.GetComponent<Bot>();
 
-        if (currBot.stamina >= (500 - cost))
-        { 
+        if (!jumping)
+        {
+            // Record the original position and target jump position
+            jumpStartPosition = agent.transform.position;
+            jumpEndPosition = jumpStartPosition + Vector3.up * jumpHeight;
 
+            // Start the jump
+            jumpStartTime = Time.time;
+            jumping = true;
+        }
+
+        // Check if the jump has completed
+        if (jumping)
+        {
+            float jumpProgress = (Time.time - jumpStartTime) * jumpSpeed;
+            Vector3 newPosition = Vector3.Lerp(jumpStartPosition, jumpEndPosition, jumpProgress);
+
+            // Ensure the bot doesn't overshoot the target position
+            if (jumpProgress >= 1.0f)
+            {
+                newPosition = jumpEndPosition;
+                jumping = false;
+            }
+
+            agent.transform.position = newPosition;
         }
 
         return true;
-           
     }
 }

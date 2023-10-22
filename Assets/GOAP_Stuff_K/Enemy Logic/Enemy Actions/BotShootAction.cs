@@ -50,21 +50,21 @@ public class BotShootAction : GOAPAction
 
             if (isPlayerRunning || botCanSee)
             {
-                Debug.Log("BotShootAction precondition is a go");
+                Debug.Log("BotShootAction precondition is a GO");
                 Debug.Log("Bot heard or saw the player.");
                 return true;
 
             }
             else
             {
-                Debug.Log("BotShootAction precondition is a no no");
+                Debug.Log("BotShootAction precondition is a NO NO");
                 Debug.Log("Player is not running or there is an obstacle in the line of sight.");
                 return false;
             }
         }
         else
         {
-            Debug.Log("BotShootAction precondition is a no no");
+            Debug.Log("BotShootAction precondition is a NO NO");
             return false;
         }
     }

@@ -196,6 +196,7 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetMouseButtonDown(1))
             {
                 CameraController.instance.ZoomIn(activeGun.zoomAmmount);
+                isPlayerZoomedIn = true;
             }
 
             if (Input.GetMouseButton(1))
@@ -211,6 +212,7 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetMouseButtonUp(1))
             {
                 CameraController.instance.ZoomOut();
+                isPlayerZoomedIn = false;
             }
 
             anim.SetFloat("moveSpeed", moveInput.magnitude);

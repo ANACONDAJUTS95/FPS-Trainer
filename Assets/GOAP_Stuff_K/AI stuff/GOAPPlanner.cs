@@ -81,7 +81,7 @@ public class GOAPPlanner
 		}
 
 		// hooray we have a plan!
-		Debug.Log("GOAPPlanner - we have a plan!");
+		Debug.Log("GOAPPlanner - we HAVE A PLAN!");
 		return queue;
 	}
 
@@ -113,7 +113,7 @@ public class GOAPPlanner
 					// we found a solution!
 					leaves.Add(node);
 					foundOne = true;
-					Debug.Log("GOAPPlanner - we found a solution!");
+					Debug.Log("GOAPPlanner - we FOUND A SOLUTION!");
 				}
 				else
 				{

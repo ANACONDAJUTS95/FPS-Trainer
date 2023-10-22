@@ -19,7 +19,7 @@ public class BotTakeCover : GOAPAction
     public BotTakeCover()
     {
         addEffect("evadePlayer", true);
-        cost = 600f; // must have higher cost to avoid spam
+        cost = 400f; // must have higher cost to avoid spam
     }
 
     void Start()
@@ -78,13 +78,13 @@ public class BotTakeCover : GOAPAction
 
         if (target != null && currBot.stamina >= (500 - cost) && isPlayerShooting)
         {
-            Debug.Log("BotTakeCover precondition is a go");
+            Debug.Log("BotTakeCover precondition is a GO");
             Debug.Log("Bot is STRAFING");
             return true;
         }
         else
         {
-            Debug.Log("BotTakeCover precondition is a no no");
+            Debug.Log("BotTakeCover precondition is a NO NO");
             return false;
         }
     }
