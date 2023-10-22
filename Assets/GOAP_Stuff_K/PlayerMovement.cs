@@ -20,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
 
     public Animator anim;
 
+    public AudioSource footstepFast, footstepSlow;
+
     public GameObject bullet;
     public Transform firePoint;
 

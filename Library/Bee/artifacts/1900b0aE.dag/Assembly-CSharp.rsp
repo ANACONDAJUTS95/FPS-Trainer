@@ -379,6 +379,7 @@
 "Assets/Q3DAudio/Scripts/Q3DAudioRoom.cs"
 "Assets/Q3DAudio/Scripts/Q3DAudioSource.cs"
 "Assets/Scripts_A/AudioManager.cs"
+"Assets/Scripts_A/BackgroundMusicManager.cs"
 "Assets/Scripts_A/BulletController.cs"
 "Assets/Scripts_A/BulletCounter.cs"
 "Assets/Scripts_A/CameraController.cs"
@@ -397,6 +398,7 @@
 "Assets/Scripts_A/RandomEnemySpawn.cs"
 "Assets/Scripts_A/RandomSpawn.cs"
 "Assets/Scripts_A/RespawnEnemy.cs"
+"Assets/Scripts_A/ResultsUI.cs"
 "Assets/Scripts_A/UIController.cs"
 -langversion:9.0
 

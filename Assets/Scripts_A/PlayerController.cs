@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 moveInput;
     public Transform camTrans, groundCheckPoint;
 
+    public float maxViewAngle = 60f;
+
     public float mouseSensitivity;
     public bool invertX, invertY, canJump;
 
@@ -129,6 +131,16 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + mouseInput.x, transform.rotation.eulerAngles.z);
 
             camTrans.rotation = Quaternion.Euler(camTrans.rotation.eulerAngles + new Vector3(-mouseInput.y, 0f, 0f));
+             
+            if (camTrans.rotation.eulerAngles.x > maxViewAngle && camTrans.rotation.eulerAngles.x < 180f)
+            {
+                camTrans.rotation = Quaternion.Euler(maxViewAngle, camTrans.rotation.eulerAngles.y, camTrans.rotation.eulerAngles.z);
+            }
+
+            else if (camTrans.rotation.eulerAngles.x > 180f && camTrans.rotation.eulerAngles.x < 360f - maxViewAngle)
+            {
+                camTrans.rotation = Quaternion.Euler(-maxViewAngle, camTrans.rotation.eulerAngles.y, camTrans.rotation.eulerAngles.z);
+            }
 
             muzzleFlash.SetActive(false);
 

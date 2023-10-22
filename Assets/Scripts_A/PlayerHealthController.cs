@@ -8,6 +8,10 @@ public class PlayerHealthController : MonoBehaviour
 
     public int maxHealth, currentHealth;
 
+    public int enemiesEliminatedCount;  // Variable to track enemies eliminated
+    public int bulletsUsedCount;        // Variable to track bullets used/fired
+    public float totalTimeElapsed;      // Variable to track total time elapsed
+
     private void Awake()
     {
         instance = this;
@@ -50,7 +54,7 @@ public class PlayerHealthController : MonoBehaviour
             gameObject.SetActive(false);
 
             currentHealth = 0;
-            GameManager.instance.PlayerDied();
+            GameManager.instance.PlayerDied(enemiesEliminatedCount, bulletsUsedCount, totalTimeElapsed);
 
             AudioManager.instance.StopBGM();
             

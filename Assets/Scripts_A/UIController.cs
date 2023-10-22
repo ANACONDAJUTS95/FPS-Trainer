@@ -15,11 +15,18 @@ public class UIController : MonoBehaviour
 
     public GameObject pauseScreen;
 
-    //End GameUI
+    // End GameUI
     public GameObject endGameUI; // Reference to the EndGameUI GameObject
-    public Text enemiesEliminatedText;
-    public Text bulletsUsedText;
-    public Text totalTimeText;
+    public Text endGameEnemiesEliminatedText;
+    public Text endGameBulletsUsedText;
+    public Text endGameTotalTimeText;
+
+    // Lose Screen
+    public GameObject loseScreenCanvas;
+    public Text loseScreenEnemiesEliminatedText;
+    public Text loseScreenBulletsUsedText;
+    public Text loseScreenTotalTimeText;
+
 
     public void Awake()
     {
@@ -44,30 +51,51 @@ public class UIController : MonoBehaviour
     //End GameUI
     public void SetEnemiesEliminated(int count)
     {
-        enemiesEliminatedText.text = "Enemies Eliminated: " + count;
+        endGameEnemiesEliminatedText.text = "Enemies Eliminated: " + count;
+        loseScreenEnemiesEliminatedText.text = "Enemies Eliminated: " + count;
     }
 
     public void SetBulletsUsed(int count)
     {
-        bulletsUsedText.text = "Bullets Used/Fired: " + count;
+        endGameBulletsUsedText.text = "Bullets Used/Fired: " + count;
+        loseScreenBulletsUsedText.text = "Bullets Used/Fired: " + count;
     }
 
     public void SetTotalTime(float time)
     {
-        totalTimeText.text = "Total Time to Finish: " + time.ToString("F2") + " seconds";
+        endGameTotalTimeText.text = "Total Time to Finish: " + time.ToString("F2") + " seconds";
+        loseScreenTotalTimeText.text = "Total Time to Finish: " + time.ToString("F2") + " seconds";
     }
+
+    public void ShowLoseScreen(int enemiesEliminated, int bulletsUsed, float totalTime)
+    {
+        loseScreenCanvas.SetActive(true); // Activate the lose screen canvas
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        Time.timeScale = 0f;
+
+        // Update the text elements in the lose screen UI
+        loseScreenEnemiesEliminatedText.text = "Enemies Eliminated: " + enemiesEliminated;
+        loseScreenBulletsUsedText.text = "Bullets Used/Fired: " + bulletsUsed;
+        loseScreenTotalTimeText.text = "Total Time to Finish: " + totalTime.ToString("F2") + " seconds";
+    }
+
+
 
     public void ShowEndGameUI(int enemiesEliminated, int bulletsUsed, float totalTime)
     {
         // Show the EndGameUI container
         endGameUI.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
         Time.timeScale = 0f;
 
-        // Update the text elements with the provided information
-        enemiesEliminatedText.text = "Enemies Eliminated: " + enemiesEliminated;
-        bulletsUsedText.text = "Bullets Used/Fired: " + bulletsUsed;
-        totalTimeText.text = "Total Time to Finish: " + totalTime.ToString("F2") + " seconds";
+        // Update the text elements in the end game UI
+        endGameEnemiesEliminatedText.text = "Enemies Eliminated: " + enemiesEliminated;
+        endGameBulletsUsedText.text = "Bullets Used/Fired: " + bulletsUsed;
+        endGameTotalTimeText.text = "Total Time to Finish: " + totalTime.ToString("F2") + " seconds";
     }
 
     public void HideEndGameUI()
@@ -75,6 +103,8 @@ public class UIController : MonoBehaviour
         // Hide the EndGameUI container
         endGameUI.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         Time.timeScale = 1f;
     }
 
