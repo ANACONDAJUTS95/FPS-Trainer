@@ -19,9 +19,6 @@ public class BulletController : MonoBehaviour
 
     private int maxHealth, currentHealth;
 
-    // For GOAP:
-    [SerializeField] 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -56,7 +53,8 @@ public class BulletController : MonoBehaviour
         if (other.gameObject.tag == "Enemy_GOAP_BS")
         {
             other.transform.parent.GetComponent<Bot>().health -= damage; // damage to the bodyshot, check inspector(bullet prefab)
-            Debug.Log("BODYSHOT hit");
+            Debug.Log("BODYSHOT hit ");
+            Debug.Log("BODYSHOT hit, current bot health: " + other.transform.parent.GetComponent<Bot>().health);
         }
 
 
@@ -69,7 +67,7 @@ public class BulletController : MonoBehaviour
 
         if (other.gameObject.tag == "Headshot" && damageEnemy)
         {
-            other.transform.parent.GetComponent<EnemyHealthController>().DamageEnemy(damage * 3);
+            other.transform.parent.GetComponent<EnemyHealthController>().DamageEnemy(damage * 5);
             Debug.Log("Headshot hit");
         }
 

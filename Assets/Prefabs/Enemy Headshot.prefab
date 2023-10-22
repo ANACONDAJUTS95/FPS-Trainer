@@ -198,7 +198,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.43316486
+  m_Radius: 0.5
   m_Center: {x: -0.0142015815, y: -0.11613022, z: 0.06349665}
 --- !u!65 &2460481608943330125
 BoxCollider:
@@ -217,7 +217,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.7818651, y: 0.778902, z: 0.7156647}
   m_Center: {x: -0.012420297, y: -0.11706951, z: 0.045794934}
@@ -260,7 +260,7 @@ Transform:
   - {fileID: 1855020885800991953}
   - {fileID: 6244492708369514385}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &3785813469878225436
 CapsuleCollider:
@@ -297,8 +297,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25ebaea4965fc2e46813550ca1eb3966, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
-  currentHealth: 5
+  maxHealth: 100
+  currentHealth: 100
 --- !u!114 &3227066928789885337
 MonoBehaviour:
   m_ObjectHideFlags: 0
