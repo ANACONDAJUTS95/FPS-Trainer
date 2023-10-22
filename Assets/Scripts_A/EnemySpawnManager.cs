@@ -90,7 +90,7 @@ public class EnemySpawnManager : MonoBehaviour
         if (uiController != null)
         {
             // Display the end-game UI
-            bulletsUsed = PlayerController.instance.bulletsFired; // Update bulletsUsed
+            bulletsUsed = PlayerMovement.instance.bulletsFired; // Update bulletsUsed
 
             uiController.SetBulletsUsed(bulletsUsed); // Update bulletsUsed in the UI
             uiController.SetTotalTime(totalTime); // Update totalTime in the UI

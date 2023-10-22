@@ -23,6 +23,9 @@ public class PlayerMovement : MonoBehaviour
     public GameObject bullet;
     public Transform firePoint;
 
+    public int bulletsFired = 0; // Tracks bullets fired
+    private UIController uiController;
+
     // bool checkers for player actions: // can add more in the future
     public bool 
         isPlayerInAir = false,
@@ -230,9 +233,14 @@ public class PlayerMovement : MonoBehaviour
 
             activeGun.fireCounter = activeGun.fireRate;
 
+            bulletsFired++; // Increment the bullet count
+
+            // Update the UI with the current bullet count
+            uiController.SetBulletsUsed(bulletsFired);
             UIController.instance.ammoText.text = "AMMO: " + activeGun.currentAmmo;
 
             muzzleFlash.SetActive(true);
         }
+
     }
 }

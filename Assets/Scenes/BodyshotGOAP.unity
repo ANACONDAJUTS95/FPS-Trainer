@@ -3966,7 +3966,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 4081986922590148138, guid: 6e0bb4767b6a49841b5e6489c9aab4e5, type: 3}
   respawnTime: 2
-  maxSpawnCount: 30
+  maxSpawnCount: 3
 --- !u!1 &1266461879
 GameObject:
   m_ObjectHideFlags: 0
@@ -6663,6 +6663,7 @@ MonoBehaviour:
   anim: {fileID: 2024033597}
   bullet: {fileID: 0}
   firePoint: {fileID: 954436520}
+  bulletsFired: 0
   isPlayerInAir: 0
   isPlayerWalking: 0
   isPlayerRunning: 0
