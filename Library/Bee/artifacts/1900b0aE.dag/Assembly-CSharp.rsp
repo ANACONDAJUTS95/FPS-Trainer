@@ -380,6 +380,7 @@
 "Assets/Q3DAudio/Scripts/Q3DAudioSource.cs"
 "Assets/Scripts_A/AudioManager.cs"
 "Assets/Scripts_A/BulletController.cs"
+"Assets/Scripts_A/BulletCounter.cs"
 "Assets/Scripts_A/CameraController.cs"
 "Assets/Scripts_A/CheckpointController.cs"
 "Assets/Scripts_A/EnemyController.cs"

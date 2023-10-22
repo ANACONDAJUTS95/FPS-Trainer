@@ -26,6 +26,9 @@ public class PlayerMovement : MonoBehaviour
     public int bulletsFired = 0; // Tracks bullets fired
     private UIController uiController;
 
+    // Add a reference to the BulletCounter script
+    private BulletCounter bulletCounter;
+
     // bool checkers for player actions: // can add more in the future
     public bool 
         isPlayerInAir = false,
@@ -76,6 +79,8 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         instance = this;
+
+        bulletCounter = GameObject.Find("BulletCounterManager").GetComponent<BulletCounter>();
     }
 
 
@@ -233,7 +238,8 @@ public class PlayerMovement : MonoBehaviour
 
             activeGun.fireCounter = activeGun.fireRate;
 
-            bulletsFired++; // Increment the bullet count
+            // Increment the bullet count using the BulletCounter component
+            bulletCounter.bulletsFired++;
 
             // Update the UI with the current bullet count
             uiController.SetBulletsUsed(bulletsFired);

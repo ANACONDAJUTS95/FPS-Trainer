@@ -36,13 +36,18 @@ public class PlayerController : MonoBehaviour
     //AudioSource
     public AudioSource footstepFast, footstepSlow;
 
-    public int bulletsFired = 0; // Tracks bullets fired
+    //public int bulletsFired = 0; // Tracks bullets fired
+    // Add a reference to the BulletCounter script
+    private BulletCounter bulletCounter;
     private UIController uiController;
 
     private void Awake()
     {
         instance = this;
         uiController = UIController.instance;
+
+        // Get a reference to the BulletCounter script on the "BulletCounterManager" GameObject
+        bulletCounter = GameObject.Find("BulletCounterManager").GetComponent<BulletCounter>();
     }
 
     // Start is called before the first frame update
@@ -197,10 +202,11 @@ public class PlayerController : MonoBehaviour
 
             activeGun.fireCounter = activeGun.fireRate;
 
-            bulletsFired++; // Increment the bullet count
+            // Increment the bullet count using the BulletCounter component
+            bulletCounter.bulletsFired++;
 
             // Update the UI with the current bullet count
-            uiController.SetBulletsUsed(bulletsFired);
+            uiController.SetBulletsUsed(bulletCounter.bulletsFired);
             UIController.instance.ammoText.text = "AMMO: " + activeGun.currentAmmo;
 
             muzzleFlash.SetActive(true);

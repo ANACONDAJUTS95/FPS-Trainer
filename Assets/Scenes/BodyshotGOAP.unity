@@ -621,6 +621,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgm: {fileID: 749863512}
   soundEffects: []
+--- !u!1 &166291868
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 166291869}
+  - component: {fileID: 166291870}
+  m_Layer: 0
+  m_Name: BulletCounterManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &166291869
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166291868}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 617530503}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &166291870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166291868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67637f9169f43ea42a751854708322af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletsFired: 0
 --- !u!1 &234712467
 GameObject:
   m_ObjectHideFlags: 0
@@ -2024,6 +2069,7 @@ Transform:
   - {fileID: 1398551712}
   - {fileID: 2145753099}
   - {fileID: 1223601153}
+  - {fileID: 166291869}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3911,7 +3957,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1193059045}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 182.69989, y: -141.8, z: 0.6375917}
+  m_LocalPosition: {x: 182.69989, y: -128, z: 0.6375917}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3966,7 +4012,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 4081986922590148138, guid: 6e0bb4767b6a49841b5e6489c9aab4e5, type: 3}
   respawnTime: 2
-  maxSpawnCount: 3
+  maxSpawnCount: 30
 --- !u!1 &1266461879
 GameObject:
   m_ObjectHideFlags: 0
@@ -5233,7 +5279,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1619414406}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 290, y: 0, z: 0}
+  m_LocalPosition: {x: 290, y: 13.800003, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5803,7 +5849,7 @@ MonoBehaviour:
   canAutoFire: 1
   fireRate: 0.19
   fireCounter: 0
-  currentAmmo: 30
+  currentAmmo: 1000
   zoomAmmount: 40
 --- !u!4 &1690227540 stripped
 Transform:
