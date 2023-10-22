@@ -5,15 +5,14 @@ using UnityEngine.Audio;
 
 public class BulletController : MonoBehaviour
 {
-    public float moveSpeed, lifeTime;
+    public float moveSpeed;
+    public int damage = 1;
+    public bool damageEnemy, damagePlayer;
 
-    public Rigidbody theRB;
+    private float lifeTime = 3.0f; // Bullet lifetime
+    private Rigidbody theRB;
 
     public GameObject impactEffect;
-
-    public int damage = 1;
-
-    public bool damageEnemy, damagePlayer;
 
     public AudioClip bulletSound; // Add an AudioClip field for the collect sound
 
@@ -22,7 +21,9 @@ public class BulletController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        theRB = GetComponent<Rigidbody>();
+        theRB.velocity = transform.forward * moveSpeed; // Set the bullet's initial velocity
+        Destroy(gameObject, lifeTime); // Destroy the bullet after the specified lifetime
     }
     void Update()
     {

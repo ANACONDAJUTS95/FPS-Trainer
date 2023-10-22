@@ -32,6 +32,8 @@ public class EnemySpawnManager : MonoBehaviour
 
     private IEnumerator SpawnEnemiesOneByOne()
     {
+        bool endGameUIShown = false; // Flag to track if the EndGameUI is shown
+
         while (!gameEnded && spawnCount < maxSpawnCount)
         {
             // Get a random position within the map boundaries
@@ -49,17 +51,25 @@ public class EnemySpawnManager : MonoBehaviour
             {
                 yield return null;
             }
+
+            // Debug log to confirm when an enemy is eliminated.
+            Debug.Log("Enemy Eliminated! Remaining: " + (maxSpawnCount - spawnCount));
         }
 
-        if (spawnCount >= maxSpawnCount)
+        if (spawnCount >= maxSpawnCount && !endGameUIShown)
         {
             // Calculate the total time when you meet the end condition
             totalTime = Time.time - startTime;
             gameEnded = true;
 
+            // Check if the maximum spawn count is reached
+            Debug.Log("Spawn count reached maximum!");
             UpdateUI();
+            endGameUIShown = true; // Set the flag to true to prevent multiple UI displays.
         }
     }
+
+
 
     private Vector3 GetRandomPositionWithinMap()
     {
@@ -84,7 +94,14 @@ public class EnemySpawnManager : MonoBehaviour
 
             uiController.SetBulletsUsed(bulletsUsed); // Update bulletsUsed in the UI
             uiController.SetTotalTime(totalTime); // Update totalTime in the UI
-            uiController.ShowEndGameUI(spawnCount, bulletsUsed, totalTime);
+
+            if (spawnCount >= maxSpawnCount) // Check if the maximum spawn count is reached
+            {
+                Debug.Log("Spawn count reached maximum!");
+
+                uiController.ShowEndGameUI(spawnCount, bulletsUsed, totalTime);
+            }
         }
     }
+
 }
