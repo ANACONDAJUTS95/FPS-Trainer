@@ -47,13 +47,20 @@ public class BotShootAction : GOAPAction
 
             // Check if the player is running (isMakingNoise)
             bool isPlayerRunning = target.GetComponent<PlayerMovement>().isPlayerRunning;
+            bool isPlayerWalking = target.GetComponent<PlayerMovement>().isPlayerWalking;
 
-            if (isPlayerRunning || botCanSee)
+            if (isPlayerRunning && botCanSee)
             {
                 Debug.Log("BotShootAction precondition is a GO");
                 Debug.Log("Bot heard or saw the player.");
                 return true;
 
+            }
+            else if (isPlayerWalking && botCanSee)
+            {
+                Debug.Log("BotShootAction precondition is a GO");
+                Debug.Log("B.");
+                return true;
             }
             else
             {

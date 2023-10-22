@@ -74,9 +74,9 @@ public class BotTakeCover : GOAPAction
         target = GameObject.Find("Player");
         Bot currBot = agent.GetComponent<Bot>();
         bool isPlayerShooting = target.GetComponent<PlayerMovement>().isPlayerShooting;
-        //bool isPlayerRunning = target.GetComponent<PlayerMovement>().isPlayerRunning;
+        bool isPlayerRunning = target.GetComponent<PlayerMovement>().isPlayerRunning;
 
-        if (target != null && currBot.stamina >= (500 - cost) && isPlayerShooting)
+        if (target != null && currBot.stamina >= (500 - cost) && (isPlayerShooting || isPlayerRunning))
         {
             Debug.Log("BotTakeCover precondition is a GO");
             Debug.Log("Bot is STRAFING");
