@@ -54,7 +54,7 @@ public class PlayerHealthController : MonoBehaviour
             gameObject.SetActive(false);
 
             currentHealth = 0;
-            GameManager.instance.PlayerDied(enemiesEliminatedCount, bulletsUsedCount, totalTimeElapsed);
+            GameManager.instance.PlayerDied(bulletsUsedCount, totalTimeElapsed);
 
             AudioManager.instance.StopBGM();
             

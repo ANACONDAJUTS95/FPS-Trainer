@@ -8,9 +8,9 @@ public class EnemySpawnManager : MonoBehaviour
     public float respawnTime;
     public int maxSpawnCount = 30; // Maximum number of enemy spawns
 
-    private int spawnCount = 0;     // Variable for enemy spawns
-    private int bulletsUsed;        // Variable to track bullets used
-    private float totalTime;        // Variable for playtime
+    private int spawnCount = 0; // Variable for enemy spawns
+    private int bulletsUsed; // Variable to track bullets used
+    private float totalTime; // Variable for playtime
 
     private float startTime; // Variable to store the start time
 
@@ -19,9 +19,12 @@ public class EnemySpawnManager : MonoBehaviour
 
     private int enemiesEliminated = 0;
 
+    private EnemyCounterManager enemyCounterManager;
+
     private void Awake()
     {
         uiController = UIController.instance;
+        enemyCounterManager = EnemyCounterManager.instance;
     }
 
     private void Start()
@@ -31,22 +34,6 @@ public class EnemySpawnManager : MonoBehaviour
         // Start spawning enemies one by one
         StartCoroutine(SpawnEnemiesOneByOne());
     }
-
-    // Call this function when an enemy is eliminated
-    void EliminateEnemy()
-    {
-        // Your code to eliminate the enemy
-
-        // Increment enemiesEliminated
-        enemiesEliminated++;
-
-        // Debug log to track the number of enemies eliminated
-        Debug.Log("Enemy Eliminated! Total Enemies Eliminated: " + enemiesEliminated);
-
-        // Update the count in GameManager
-        GameManager.instance.UpdateEnemiesEliminated(enemiesEliminated);
-    }
-
 
     private IEnumerator SpawnEnemiesOneByOne()
     {
@@ -58,7 +45,9 @@ public class EnemySpawnManager : MonoBehaviour
             Vector3 randomPosition = GetRandomPositionWithinMap();
 
             // Spawn a new enemy at the random position
+            Debug.Log("enemyPrefab: " + enemyPrefab); // Check the reference
             GameObject enemy = Instantiate(enemyPrefab, randomPosition, Quaternion.identity);
+            Debug.Log("enemy: " + enemy); // Check the instantiated enemy
             enemy.SetActive(true);
 
             // Increment the spawn count
@@ -72,6 +61,9 @@ public class EnemySpawnManager : MonoBehaviour
 
             // Increment the enemiesEliminated count
             enemiesEliminated++;
+
+            // Update the enemies eliminated count in the EnemyCounterManager
+            enemyCounterManager.IncrementEnemiesEliminated();
 
             // Debug log to confirm when an enemy is eliminated.
             Debug.Log("Enemy Eliminated! Remaining: " + (maxSpawnCount - spawnCount));
@@ -89,8 +81,6 @@ public class EnemySpawnManager : MonoBehaviour
             endGameUIShown = true; // Set the flag to true to prevent multiple UI displays.
         }
     }
-
-
 
     private Vector3 GetRandomPositionWithinMap()
     {

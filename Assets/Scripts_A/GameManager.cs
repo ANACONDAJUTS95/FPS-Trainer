@@ -54,39 +54,19 @@ public class GameManager : MonoBehaviour
 
 
 
-    public void PlayerDied(int enemiesEliminated, int bulletsUsed, float totalTime)
+    public void PlayerDied(int bulletsUsed, float totalTime)
     {
-        Debug.Log("PlayerDied method called!");
+        totalTime = Time.time - startTime;
+        bulletsUsed = BulletCounter.instance.bulletsFired; // Update bulletsUsed
 
-        Time.timeScale = 0f; // Pause the game
+        int enemiesEliminated = EnemyCounterManager.instance.GetEnemiesEliminatedCount(); // Get the count from your manager script
 
-        // Log the values to the Unity Console
-        Debug.Log("Player Died - Enemies Eliminated: " + enemiesEliminated);
-        Debug.Log("Player Died - Bullets Used/Fired: " + bulletsUsed);
-        Debug.Log("Player Died - Total Time to Finish: " + totalTime);
+        UIController.instance.ShowLoseScreen(bulletsUsed, totalTime, enemiesEliminated); // Pass the count to ShowLoseScreen
 
-        // Pass the values to the UIController to display on the Lose Screen
-        UIController.instance.ShowLoseScreen(enemiesEliminated, bulletsUsed, totalTime);
-
-        // Update the UI for LoseScreen
-        UpdateUI();
+        Time.timeScale = 0f;
     }
 
-    private void UpdateUI()
-    {
-        if (UIController.instance != null)
-        {
-            // Display the end-game UI
-            int bulletsUsed = BulletCounter.instance.bulletsFired;
-            float totalTime = Time.time - startTime;
 
-            UIController.instance.SetBulletsUsed(bulletsUsed);
-            UIController.instance.SetTotalTime(totalTime);
-
-            // Update the enemies eliminated
-            UIController.instance.SetEnemiesEliminated(enemiesEliminated);
-        }
-    }
 
     public void RestartGame()
     {
@@ -117,6 +97,7 @@ public class GameManager : MonoBehaviour
             Cursor.visible = true;
             Time.timeScale = 0f;
         }
+
         PlayerController.instance.footstepFast.Stop();
         PlayerController.instance.footstepSlow.Stop();
         PlayerMovement.instance.footstepFast.Stop();
