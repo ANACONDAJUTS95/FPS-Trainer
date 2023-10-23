@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public int enemiesEliminated;
     public int bulletsUsed;
     public float totalTime;
+    private float startTime; // Add this line
+
 
     private void Awake()
     {
@@ -23,6 +25,7 @@ public class GameManager : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        startTime = Time.time; // Record the start time
     }
 
     // Update is called once per frame
@@ -30,13 +33,26 @@ public class GameManager : MonoBehaviour
     {
         if (!UIController.instance.endGameUI.activeInHierarchy)
         {
-
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 PauseUnpause();
             }
         }
     }
+
+    public void SetEnemiesEliminated(int count)
+    {
+        enemiesEliminated = count; // Update the local count
+        UIController.instance.SetEnemiesEliminated(count); // Update the UI
+    }
+
+    public void UpdateEnemiesEliminated(int count)
+    {
+        enemiesEliminated = count;
+        UIController.instance.SetEnemiesEliminated(count);
+    }
+
+
 
     public void PlayerDied(int enemiesEliminated, int bulletsUsed, float totalTime)
     {
@@ -51,9 +67,26 @@ public class GameManager : MonoBehaviour
 
         // Pass the values to the UIController to display on the Lose Screen
         UIController.instance.ShowLoseScreen(enemiesEliminated, bulletsUsed, totalTime);
+
+        // Update the UI for LoseScreen
+        UpdateUI();
     }
 
+    private void UpdateUI()
+    {
+        if (UIController.instance != null)
+        {
+            // Display the end-game UI
+            int bulletsUsed = BulletCounter.instance.bulletsFired;
+            float totalTime = Time.time - startTime;
 
+            UIController.instance.SetBulletsUsed(bulletsUsed);
+            UIController.instance.SetTotalTime(totalTime);
+
+            // Update the enemies eliminated
+            UIController.instance.SetEnemiesEliminated(enemiesEliminated);
+        }
+    }
 
     public void RestartGame()
     {
@@ -61,15 +94,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Reload the current scene
     }
 
-
-
     public IEnumerator PlayerDiedCo()
     {
         yield return new WaitForSeconds(waitAfterDying);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
         Time.timeScale = 1f; // Reset the time scale
-
     }
 
     public void PauseUnpause()
@@ -77,28 +106,21 @@ public class GameManager : MonoBehaviour
         if (UIController.instance.pauseScreen.activeInHierarchy)
         {
             UIController.instance.pauseScreen.SetActive(false);
-
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-
             Time.timeScale = 1f;
         }
-
         else
         {
             UIController.instance.pauseScreen.SetActive(true);
-
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-
             Time.timeScale = 0f;
-
-            
         }
-
         PlayerController.instance.footstepFast.Stop();
         PlayerController.instance.footstepSlow.Stop();
         PlayerMovement.instance.footstepFast.Stop();
         PlayerMovement.instance.footstepSlow.Stop();
     }
+
 }

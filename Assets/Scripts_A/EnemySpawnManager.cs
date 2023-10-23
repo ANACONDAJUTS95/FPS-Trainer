@@ -17,6 +17,8 @@ public class EnemySpawnManager : MonoBehaviour
     private UIController uiController;
     private bool gameEnded = false;
 
+    private int enemiesEliminated = 0;
+
     private void Awake()
     {
         uiController = UIController.instance;
@@ -29,6 +31,22 @@ public class EnemySpawnManager : MonoBehaviour
         // Start spawning enemies one by one
         StartCoroutine(SpawnEnemiesOneByOne());
     }
+
+    // Call this function when an enemy is eliminated
+    void EliminateEnemy()
+    {
+        // Your code to eliminate the enemy
+
+        // Increment enemiesEliminated
+        enemiesEliminated++;
+
+        // Debug log to track the number of enemies eliminated
+        Debug.Log("Enemy Eliminated! Total Enemies Eliminated: " + enemiesEliminated);
+
+        // Update the count in GameManager
+        GameManager.instance.UpdateEnemiesEliminated(enemiesEliminated);
+    }
+
 
     private IEnumerator SpawnEnemiesOneByOne()
     {
@@ -51,6 +69,9 @@ public class EnemySpawnManager : MonoBehaviour
             {
                 yield return null;
             }
+
+            // Increment the enemiesEliminated count
+            enemiesEliminated++;
 
             // Debug log to confirm when an enemy is eliminated.
             Debug.Log("Enemy Eliminated! Remaining: " + (maxSpawnCount - spawnCount));
@@ -105,6 +126,9 @@ public class EnemySpawnManager : MonoBehaviour
 
                 uiController.ShowEndGameUI(spawnCount, bulletsUsed, totalTime);
             }
+
+            // Update enemiesEliminated in the GameManager
+            GameManager.instance.SetEnemiesEliminated(enemiesEliminated);
         }
 
         PlayerController.instance.footstepFast.Stop();

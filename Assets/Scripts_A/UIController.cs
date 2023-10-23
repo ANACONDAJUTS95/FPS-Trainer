@@ -51,6 +51,7 @@ public class UIController : MonoBehaviour
     //End GameUI
     public void SetEnemiesEliminated(int count)
     {
+        Debug.Log("SetEnemiesEliminated called with count: " + count); // Add this line for debugging
         endGameEnemiesEliminatedText.text = "Enemies Eliminated: " + count;
         loseScreenEnemiesEliminatedText.text = "Enemies Eliminated: " + count;
     }

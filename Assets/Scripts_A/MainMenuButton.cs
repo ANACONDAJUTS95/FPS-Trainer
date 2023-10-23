@@ -13,7 +13,7 @@ public class MainMenuButton : MonoBehaviour
         mainMenuButton.onClick.AddListener(LoadMainMenu);
     }
 
-    void LoadMainMenu()
+    public void LoadMainMenu()
     {
         // Load the Main Menu scene when the button is clicked.
         SceneManager.LoadScene("MainMenu"); // Replace "MainMenu" with your actual scene name.
