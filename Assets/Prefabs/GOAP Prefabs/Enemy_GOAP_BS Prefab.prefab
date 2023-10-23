@@ -285,11 +285,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e84a4d17129886942b5614cac830f539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 300
+  cost: 100
   target: {fileID: 0}
   bullet: {fileID: 3209864970369629157, guid: 40a262d1e23626145b48e257cc80adf9, type: 3}
   firePoint: {fileID: 7392661835176137053}
-  fireRate: 0.3
+  fireRate: 0.2
 --- !u!114 &4751477905822467258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -346,6 +346,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7336228606204082114}
   - component: {fileID: 7929814185830354895}
+  - component: {fileID: 3884353917611609794}
   m_Layer: 0
   m_Name: BodyShot
   m_TagString: Enemy_GOAP_BS
@@ -385,12 +386,33 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
-  m_Radius: 0.41547313
+  m_Radius: 0.6
   m_Height: 1.5002277
   m_Direction: 1
   m_Center: {x: -0.005588442, y: -0.37661386, z: 0.036477566}
+--- !u!65 &3884353917611609794
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8885359270083124918}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.0613502, y: 1.4352217, z: 0.974143}
+  m_Center: {x: 0.005106747, y: -0.3105681, z: 0.041630745}
 --- !u!1001 &717805072128235041
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -96,10 +96,11 @@ public class BotShootAction : GOAPAction
             Debug.Log("BOT is shooting!");
             currBot.animator.SetTrigger("fireShot");
 
-            Instantiate(bullet, firePoint.position, firePoint.rotation); 
+            Instantiate(bullet, firePoint.position, firePoint.rotation);
+            SetAttackedToTrue();
         }
 
-        SetAttackedToTrue();
+        
 
         return true;
 

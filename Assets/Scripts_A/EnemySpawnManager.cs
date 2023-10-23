@@ -109,7 +109,6 @@ public class EnemySpawnManager : MonoBehaviour
 
         PlayerController.instance.footstepFast.Stop();
         PlayerController.instance.footstepSlow.Stop();
-
         PlayerMovement.instance.footstepFast.Stop();
         PlayerMovement.instance.footstepSlow.Stop();
     }

@@ -205,7 +205,6 @@ GameObject:
   - component: {fileID: 1699337870021890494}
   - component: {fileID: 3573975752622576166}
   - component: {fileID: 4751477905822467258}
-  - component: {fileID: 4725616441316178498}
   m_Layer: 0
   m_Name: Enemy_GOAP_HS Prefab
   m_TagString: Enemy_GOAP_Object
@@ -361,11 +360,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e84a4d17129886942b5614cac830f539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 300
+  cost: 100
   target: {fileID: 0}
   bullet: {fileID: 3209864970369629157, guid: 40a262d1e23626145b48e257cc80adf9, type: 3}
   firePoint: {fileID: 7392661835176137053}
-  fireRate: 0.3
+  fireRate: 0.2
 --- !u!114 &4751477905822467258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,20 +378,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 400
-  target: {fileID: 0}
---- !u!114 &4725616441316178498
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4081986922590148138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98f237753569a4746bb63c06f652a038, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cost: 500
   target: {fileID: 0}
 --- !u!1 &6081485623547250142
 GameObject:

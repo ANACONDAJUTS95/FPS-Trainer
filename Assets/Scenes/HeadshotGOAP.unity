@@ -6134,7 +6134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 4081986922590148138, guid: ead146ba9f767b74987b6ae630ce6909, type: 3}
   respawnTime: 2
-  maxSpawnCount: 30
+  maxSpawnCount: 2
 --- !u!1 &1561900878
 GameObject:
   m_ObjectHideFlags: 0
@@ -6938,7 +6938,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 3209864970369629157, guid: 595f7778e8fb2fc4e9e80816e18cad4c, type: 3}
   canAutoFire: 1
-  fireRate: 0.19
+  fireRate: 0.15
   fireCounter: 0
   currentAmmo: 1000
   zoomAmmount: 40

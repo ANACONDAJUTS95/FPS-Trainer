@@ -99,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!UIController.instance.pauseScreen.activeInHierarchy)
+        if (!UIController.instance.pauseScreen.activeInHierarchy && !UIController.instance.endGameUI.activeInHierarchy)
         {
             //moveInput.x = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
             //moveInput.z = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
@@ -239,13 +239,14 @@ public class PlayerMovement : MonoBehaviour
             Instantiate(activeGun.bullet, firePoint.position, firePoint.rotation);
 
             activeGun.fireCounter = activeGun.fireRate;
+            UIController.instance.ammoText.text = "AMMO: " + activeGun.currentAmmo;
 
             // Increment the bullet count using the BulletCounter component
             bulletCounter.bulletsFired++;
 
             // Update the UI with the current bullet count
-            uiController.SetBulletsUsed(bulletsFired);
-            UIController.instance.ammoText.text = "AMMO: " + activeGun.currentAmmo;
+            uiController.SetBulletsUsed(bulletCounter.bulletsFired);
+            
 
             muzzleFlash.SetActive(true);
         }
