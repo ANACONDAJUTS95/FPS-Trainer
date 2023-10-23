@@ -89,8 +89,6 @@ public class EnemySpawnManager : MonoBehaviour
     {
         if (uiController != null)
         {
-            PlayerController.instance.footstepFast.Stop();
-            PlayerController.instance.footstepSlow.Stop();
 
             // Display the end-game UI
             bulletsUsed = BulletCounter.instance.bulletsFired;
@@ -108,6 +106,12 @@ public class EnemySpawnManager : MonoBehaviour
                 uiController.ShowEndGameUI(spawnCount, bulletsUsed, totalTime);
             }
         }
+
+        PlayerController.instance.footstepFast.Stop();
+        PlayerController.instance.footstepSlow.Stop();
+
+        PlayerMovement.instance.footstepFast.Stop();
+        PlayerMovement.instance.footstepSlow.Stop();
     }
 
 }

@@ -316,6 +316,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waitAfterDying: 2
+  enemiesEliminated: 0
+  bulletsUsed: 0
+  totalTime: 0
 --- !u!1 &24510176
 GameObject:
   m_ObjectHideFlags: 0
@@ -6131,7 +6134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 4081986922590148138, guid: ead146ba9f767b74987b6ae630ce6909, type: 3}
   respawnTime: 2
-  maxSpawnCount: 3
+  maxSpawnCount: 30
 --- !u!1 &1561900878
 GameObject:
   m_ObjectHideFlags: 0

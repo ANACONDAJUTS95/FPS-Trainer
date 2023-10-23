@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 500
-  damage: 50
+  damage: 10
   damageEnemy: 0
   damagePlayer: 1
   impactEffect: {fileID: 4068587315633177971, guid: a8f0886b32676da458a4bae8d2ca285a, type: 3}
