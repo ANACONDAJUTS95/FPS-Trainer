@@ -160,11 +160,17 @@ ScriptsOnlyBuild:
     fullTypeName: PauseScreen
     methodName: MainMenu
   - assembly: Assembly-CSharp
-    fullTypeName: PauseScreen
-    methodName: Resume
+    fullTypeName: MainMenuButton
+    methodName: LoadMainMenu
+  - assembly: Assembly-CSharp
+    fullTypeName: MainMenuButton
+    methodName: LoadMainMenu
   - assembly: Assembly-CSharp
     fullTypeName: PauseScreen
     methodName: QuitGame
+  - assembly: Assembly-CSharp
+    fullTypeName: PauseScreen
+    methodName: Resume
   - assembly: Assembly-CSharp
     fullTypeName: GameManager
     methodName: RestartGame
@@ -172,11 +178,17 @@ ScriptsOnlyBuild:
     fullTypeName: PauseScreen
     methodName: MainMenu
   - assembly: Assembly-CSharp
-    fullTypeName: PauseScreen
-    methodName: Resume
+    fullTypeName: MainMenuButton
+    methodName: LoadMainMenu
+  - assembly: Assembly-CSharp
+    fullTypeName: MainMenuButton
+    methodName: LoadMainMenu
   - assembly: Assembly-CSharp
     fullTypeName: PauseScreen
     methodName: QuitGame
+  - assembly: Assembly-CSharp
+    fullTypeName: PauseScreen
+    methodName: Resume
   - assembly: Assembly-CSharp
     fullTypeName: GameManager
     methodName: RestartGame
@@ -415,6 +427,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 3356}
     - Class: 114
       Script: {instanceID: 3384}
+    - Class: 114
+      Script: {instanceID: 3608}
     - Class: 114
       Script: {instanceID: 3660}
     - Class: 114
@@ -796,6 +810,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 3356}
     - Class: 114
       Script: {instanceID: 3384}
+    - Class: 114
+      Script: {instanceID: 3608}
     - Class: 114
       Script: {instanceID: 3660}
     - Class: 114
@@ -1338,7 +1354,7 @@ ScriptsOnlyBuild:
     className: BaseInput
   - hash:
       serializedVersion: 2
-      Hash: 1a92fa9e833bb9c8f4b58ffdae371444
+      Hash: cda3dc49688c83a59994952a7473c141
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: EnemyCounterManager

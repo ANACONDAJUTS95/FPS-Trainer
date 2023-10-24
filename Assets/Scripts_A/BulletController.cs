@@ -111,7 +111,7 @@ public class BulletController : MonoBehaviour
         Vector3 prediction = transform.position + theRB.velocity * Time.fixedDeltaTime;
 
         RaycastHit hit2;
-        int layerMask = ~LayerMask.GetMask("Bullet");
+        int layerMask = ~LayerMask.GetMask("Bullets");
         Debug.DrawLine(transform.position, prediction);
 
         if (Physics.Linecast(transform.position, prediction, out hit2, layerMask))
