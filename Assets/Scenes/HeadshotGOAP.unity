@@ -8695,7 +8695,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 8
   gravityModifier: 3.8
-  jumpPower: 11
+  jumpPower: 12.5
   walkSpeed: 3.75
   charCon: {fileID: 2024033595}
   camTrans: {fileID: 1963096102}

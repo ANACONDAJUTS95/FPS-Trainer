@@ -24,6 +24,8 @@ public class BulletController : MonoBehaviour
         theRB = GetComponent<Rigidbody>();
         theRB.velocity = transform.forward * moveSpeed; // Set the bullet's initial velocity
         Destroy(gameObject, lifeTime); // Destroy the bullet after the specified lifetime
+        
+        StartCoroutine(Predict());
     }
     void Update()
     {
@@ -78,11 +80,6 @@ public class BulletController : MonoBehaviour
             PlayerHealthController.instance.DamagePlayer(damage);
         }
 
-
-        //Destroy(gameObject);
-        //Instantiate(impactEffect, transform.position + (transform.forward * (-moveSpeed * Time.deltaTime)), transform.rotation);
-
-        // Play the collect sound when colliding with any object
         PlayBulletSound();
 
         DestroyBullet();
@@ -129,7 +126,7 @@ public class BulletController : MonoBehaviour
 
     void OnTriggerEnterFixed(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy") && other.CompareTag("Enemy_GOAP_Object"))
         {
             Destroy(gameObject);
         }
