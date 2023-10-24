@@ -336,6 +336,7 @@
 "Assets/Scripts_A/CameraController.cs"
 "Assets/Scripts_A/CheckpointController.cs"
 "Assets/Scripts_A/EnemyController.cs"
+"Assets/Scripts_A/EnemyCounterManager.cs"
 "Assets/Scripts_A/EnemyHealthController.cs"
 "Assets/Scripts_A/EnemySpawnManager.cs"
 "Assets/Scripts_A/GameManager.cs"

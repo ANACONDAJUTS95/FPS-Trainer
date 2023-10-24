@@ -16,11 +16,14 @@ EditorBuildSettings:
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
     path: Assets/Scenes/Bodyshot.unity
-    guid: 68423463164ed6c4a8b7fcd7eb62b8d6
+    guid: 29aa2f39ceabe41429f90d30fca46394
   - enabled: 1
     path: Assets/Scenes/HeadshotGOAP.unity
-    guid: 64b91f86cfdddd7439dcaa83712dccce
+    guid: d78f74bd0a0c9dc40ba0675c19735e4c
   - enabled: 1
     path: Assets/Scenes/BodyshotGOAP.unity
-    guid: 7e4bc6cba383ca54d8ff0fa0173d7d72
+    guid: d03d5a658c1600b4da0e822640ca11e1
+  - enabled: 0
+    path: Assets/Scenes/HeadshotGOAP_old.unity
+    guid: 64b91f86cfdddd7439dcaa83712dccce
   m_configObjects: {}

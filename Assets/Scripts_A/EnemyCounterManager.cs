@@ -5,8 +5,8 @@ using UnityEngine;
 public class EnemyCounterManager : MonoBehaviour
 {
     // Variables to track the number of enemies and enemies eliminated
-    private int totalEnemies; // Total number of enemies spawned
-    private int enemiesEliminated; // Number of enemies eliminated
+    public int totalEnemies; // Total number of enemies spawned
+    public int enemiesEliminated; // Number of enemies eliminated
 
     public static EnemyCounterManager instance; // Singleton instance
 
