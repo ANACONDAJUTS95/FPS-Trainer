@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     public float maxViewAngle = 60f;
 
     public float mouseSensitivity;
+    private float defaultSensitivity = 2.0f; // Set the default sensitivity to your preferred value
+
     public bool invertX, invertY, canJump;
 
     public LayerMask whatIsGround;
@@ -58,6 +60,13 @@ public class PlayerController : MonoBehaviour
         UIController.instance.ammoText.text = "AMMO: " + activeGun.currentAmmo;
 
         gunStartPos = gunHolder.localPosition;
+
+        //Mouse Sensitivity
+        // Load the sensitivity value from PlayerPrefs or another persistent storage
+        float savedSensitivity = PlayerPrefs.GetFloat("MouseSensitivity", defaultSensitivity);
+
+        // Set the player's camera sensitivity
+        mouseSensitivity = savedSensitivity;
     }
 
     // Update is called once per frame

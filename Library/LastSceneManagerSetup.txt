@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/Headshot.unity
+- path: Assets/Scenes/HeadshotGOAP.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

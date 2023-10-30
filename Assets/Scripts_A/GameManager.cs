@@ -98,10 +98,10 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0f;
         }
 
-        PlayerController.instance.footstepFast.Stop();
-        PlayerController.instance.footstepSlow.Stop();
-        PlayerMovement.instance.footstepFast.Stop();
-        PlayerMovement.instance.footstepSlow.Stop();
+        //PlayerController.instance.footstepFast.Stop();
+        //PlayerController.instance.footstepSlow.Stop();
+        //PlayerMovement.instance.footstepFast.Stop();
+        //PlayerMovement.instance.footstepSlow.Stop();
     }
 
 }
