@@ -9368,8 +9368,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   anim: {fileID: 2024033597}
-  footstepFast: {fileID: 1390198960}
-  footstepSlow: {fileID: 289258374}
   bullet: {fileID: 0}
   firePoint: {fileID: 954436520}
   bulletsFired: 0
@@ -9378,6 +9376,8 @@ MonoBehaviour:
   isPlayerRunning: 0
   isPlayerShooting: 0
   isPlayerZoomedIn: 0
+  footstepFastGOAP: {fileID: 1390198960}
+  footstepSlowGOAP: {fileID: 289258374}
   activeGun: {fileID: 1681424172}
   adsPoint: {fileID: 48617547}
   gunHolder: {fileID: 629612524}

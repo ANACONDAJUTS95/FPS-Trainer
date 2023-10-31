@@ -22,8 +22,6 @@ public class PlayerMovement : MonoBehaviour
 
     public Animator anim;
 
-    public AudioSource footstepFast, footstepSlow;
-
     public GameObject bullet;
     public Transform firePoint;
 
@@ -40,6 +38,9 @@ public class PlayerMovement : MonoBehaviour
         isPlayerRunning = false,
         isPlayerShooting = false,
         isPlayerZoomedIn = false;
+
+    //run and walk
+    public AudioSource footstepFastGOAP, footstepSlowGOAP;
 
     private void ResetIsPlayerInAir()
     {
@@ -152,8 +153,13 @@ public class PlayerMovement : MonoBehaviour
             //Jump Control
             if (Input.GetKeyDown(KeyCode.Space) && canJump)
             {
+                int randomIndex = Random.Range(5, 7); // Generate a random index (0 to 2 for hurt sounds)
+
                 moveInput.y = jumpPower;
                 isPlayerInAir = true;
+
+                //SFX for jumping
+                AudioManager.instance.PlaySFX(randomIndex);
             }
 
 

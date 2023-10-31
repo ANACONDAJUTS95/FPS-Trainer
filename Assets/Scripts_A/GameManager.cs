@@ -89,6 +89,11 @@ public class GameManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             Time.timeScale = 1f;
+
+            PlayerController.instance.footstepFast.Play();
+            PlayerController.instance.footstepSlow.Play();
+            PlayerMovement.instance.footstepFastGOAP.Play();
+            PlayerMovement.instance.footstepSlowGOAP.Play();
         }
         else
         {
@@ -96,12 +101,15 @@ public class GameManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             Time.timeScale = 0f;
+
+            PlayerController.instance.footstepFast.Stop();
+            PlayerController.instance.footstepSlow.Stop();
+            PlayerMovement.instance.footstepFastGOAP.Stop();
+            PlayerMovement.instance.footstepSlowGOAP.Stop();
+
         }
 
-        //PlayerController.instance.footstepFast.Stop();
-        //PlayerController.instance.footstepSlow.Stop();
-        //PlayerMovement.instance.footstepFast.Stop();
-        //PlayerMovement.instance.footstepSlow.Stop();
+        
     }
 
 }
