@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.Rendering.PostProcessing;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +15,8 @@ public class GameManager : MonoBehaviour
     public int bulletsUsed;
     public float totalTime;
     private float startTime; // Add this line
+
+    public Toggle postProcessingToggle; // Reference to your post-processing toggle
 
 
     private void Awake()
@@ -26,6 +30,9 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         startTime = Time.time; // Record the start time
+
+        // Check and update the Post Processing effect state based on the toggle
+        UpdatePostProcessingEffectState();
     }
 
     // Update is called once per frame
@@ -38,6 +45,9 @@ public class GameManager : MonoBehaviour
                 PauseUnpause();
             }
         }
+
+        // Check and update the Post Processing effect state based on the toggle
+        UpdatePostProcessingEffectState();
     }
 
     public void SetEnemiesEliminated(int count)
@@ -64,6 +74,9 @@ public class GameManager : MonoBehaviour
         UIController.instance.ShowLoseScreen(bulletsUsed, totalTime, enemiesEliminated); // Pass the count to ShowLoseScreen
 
         Time.timeScale = 0f;
+
+        // Check and update the Post Processing effect state based on the toggle
+        UpdatePostProcessingEffectState();
     }
 
 
@@ -72,6 +85,9 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f; // Resume the game
         SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Reload the current scene
+        
+        // Check and update the Post Processing effect state based on the toggle
+        UpdatePostProcessingEffectState();
     }
 
     public IEnumerator PlayerDiedCo()
@@ -79,6 +95,9 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(waitAfterDying);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1f; // Reset the time scale
+
+        // Check and update the Post Processing effect state based on the toggle
+        UpdatePostProcessingEffectState();
     }
 
     public void PauseUnpause()
@@ -108,8 +127,23 @@ public class GameManager : MonoBehaviour
             PlayerMovement.instance.footstepSlowGOAP.Stop();
 
         }
+        // Check and update the Post Processing effect state based on the toggle
+        UpdatePostProcessingEffectState();
 
-        
+    }
+
+    // Function to update the Post Processing effect state based on the toggle
+    public void UpdatePostProcessingEffectState()
+    {
+        if (postProcessingToggle != null)
+        {
+            PostProcessVolume postProcessVolume = FindObjectOfType<PostProcessVolume>();
+            if (postProcessVolume != null)
+            {
+                // Always update the Post Processing effect based on the toggle state
+                postProcessVolume.enabled = postProcessingToggle.isOn;
+            }
+        }
     }
 
 }
