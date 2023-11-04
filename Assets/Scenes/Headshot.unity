@@ -6428,7 +6428,7 @@ MonoBehaviour:
   enemiesEliminated: 0
   bulletsUsed: 0
   totalTime: 0
-  postProcessingToggle: {fileID: 0}
+  postProcessingToggle: {fileID: 812130550}
 --- !u!1 &1475017898
 GameObject:
   m_ObjectHideFlags: 0
@@ -9841,7 +9841,7 @@ MonoBehaviour:
   activeGun: {fileID: 1681424172}
   adsPoint: {fileID: 48617547}
   gunHolder: {fileID: 629612524}
-  adsSpeed: 2
+  adsSpeed: 4
   muzzleFlash: {fileID: 153636126}
   footstepFast: {fileID: 1390198960}
   footstepSlow: {fileID: 289258374}

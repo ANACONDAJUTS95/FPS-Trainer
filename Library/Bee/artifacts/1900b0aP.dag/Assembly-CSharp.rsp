@@ -355,6 +355,7 @@
 "Assets/Scripts_A/RandomSpawn.cs"
 "Assets/Scripts_A/RespawnEnemy.cs"
 "Assets/Scripts_A/ResultsUI.cs"
+"Assets/Scripts_A/SwitchToggle.cs"
 "Assets/Scripts_A/UIController.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01_UGUI.cs"

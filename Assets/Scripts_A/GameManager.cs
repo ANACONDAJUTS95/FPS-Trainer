@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+
+        // Check and update the Post Processing effect state based on the toggle
+        UpdatePostProcessingEffectState();
     }
 
     // Start is called before the first update
@@ -108,11 +111,6 @@ public class GameManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             Time.timeScale = 1f;
-
-            PlayerController.instance.footstepFast.Play();
-            PlayerController.instance.footstepSlow.Play();
-            PlayerMovement.instance.footstepFastGOAP.Play();
-            PlayerMovement.instance.footstepSlowGOAP.Play();
         }
         else
         {
@@ -127,8 +125,6 @@ public class GameManager : MonoBehaviour
             PlayerMovement.instance.footstepSlowGOAP.Stop();
 
         }
-        // Check and update the Post Processing effect state based on the toggle
-        UpdatePostProcessingEffectState();
 
     }
 
