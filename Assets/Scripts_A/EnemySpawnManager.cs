@@ -44,6 +44,9 @@ public class EnemySpawnManager : MonoBehaviour
             // Get a random position within the map boundaries
             Vector3 randomPosition = GetRandomPositionWithinMap();
 
+            // Play the directional sound effect when an enemy is about to spawn
+            PlayDirectionalSpawnSound(randomPosition);
+
             // Spawn a new enemy at the random position
             Debug.Log("enemyPrefab: " + enemyPrefab); // Check the reference
             GameObject enemy = Instantiate(enemyPrefab, randomPosition, Quaternion.identity);
@@ -67,6 +70,9 @@ public class EnemySpawnManager : MonoBehaviour
 
             // Debug log to confirm when an enemy is eliminated.
             Debug.Log("Enemy Eliminated! Remaining: " + (maxSpawnCount - spawnCount));
+
+            // Wait for the respawnTime before spawning the next enemy
+            yield return new WaitForSeconds(respawnTime);
         }
 
         if (spawnCount >= maxSpawnCount && !endGameUIShown)
@@ -125,6 +131,36 @@ public class EnemySpawnManager : MonoBehaviour
         PlayerController.instance.footstepSlow.Stop();
         PlayerMovement.instance.footstepFastGOAP.Stop();
         PlayerMovement.instance.footstepSlowGOAP.Stop();
+    }
+
+    private void PlayDirectionalSpawnSound(Vector3 spawnPosition)
+    {
+        // Calculate the direction from the spawn position to the player (assuming player is at the origin)
+        Vector3 directionToPlayer = -spawnPosition.normalized;
+
+        // Create a temporary game object at the spawn position
+        GameObject soundSource = new GameObject("SpawnSoundSource");
+        soundSource.transform.position = spawnPosition;
+
+        // Add an AudioSource component to the temporary game object
+        AudioSource audioSource = soundSource.AddComponent<AudioSource>();
+
+        // Set the audio clip (assuming you have a spawn sound assigned to soundEffects[7])
+        audioSource.clip = AudioManager.instance.soundEffects[7].clip;
+
+        // Set the audio source properties for spatialization
+        audioSource.spatialBlend = 1.0f; // Full 3D spatialization
+        audioSource.minDistance = 1.0f; // Minimum distance for sound to be audible
+        audioSource.maxDistance = 10.0f; // Maximum distance for sound to be audible
+
+        // Set the direction of the sound to the player
+        audioSource.transform.forward = directionToPlayer;
+
+        // Play the sound
+        audioSource.Play();
+
+        // Destroy the temporary game object after the sound is played
+        Destroy(soundSource, audioSource.clip.length);
     }
 
 }
