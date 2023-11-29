@@ -16,8 +16,6 @@ public sealed class GOAPAgent : MonoBehaviour
 	private IGOAP dataProvider;
 	private GOAPPlanner planner;
 
-
-	// Use this for initialization
 	void Start()
 	{
 		stateMachine = new FSM();

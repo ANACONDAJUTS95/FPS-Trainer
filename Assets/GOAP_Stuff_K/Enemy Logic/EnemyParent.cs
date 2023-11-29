@@ -17,8 +17,8 @@ public abstract class EnemyParent : MonoBehaviour, IGOAP
 	protected float terminalSpeed;
 	protected float initialSpeed;
 	protected float acceleration;
-	protected float minDist = 1.5f; // change to higher if more distance to player // 1.5f - orig
-	protected float aggroDist = 50f; // change this to have higher aggro radius
+	protected float minDist = 1.5f; 
+	protected float aggroDist = 50f; 
 	protected bool loop = false;
 	protected float maxStamina;
 
@@ -47,7 +47,6 @@ public abstract class EnemyParent : MonoBehaviour, IGOAP
         {
 			enemyGameObjectBS.SetActive(false);
 		}
-		
 		
 
 		// Trigger the respawn event
@@ -80,7 +79,7 @@ public abstract class EnemyParent : MonoBehaviour, IGOAP
 	public HashSet<KeyValuePair<string, object>> getWorldState()
 	{
 		HashSet<KeyValuePair<string, object>> worldData = new HashSet<KeyValuePair<string, object>>();
-		worldData.Add(new KeyValuePair<string, object>("damagePlayer", false)); //to-do: change player's state for world data here
+		worldData.Add(new KeyValuePair<string, object>("damagePlayer", false));
 		worldData.Add(new KeyValuePair<string, object>("evadePlayer", false));
 		return worldData;
 	}
@@ -128,11 +127,6 @@ public abstract class EnemyParent : MonoBehaviour, IGOAP
 			transform.LookAt(player.transform.position);
 
 			setSpeed(movementSpeed);
-
-			//if (initialSpeed < terminalSpeed)
-			//{
-			//	//initialSpeed += acceleration; // comment this out, this is the initial speed
-			//}
 
 			Vector3 newPosition = moveDirection.normalized * movementSpeed * Time.deltaTime;
 			transform.position += newPosition;

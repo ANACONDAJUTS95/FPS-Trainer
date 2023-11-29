@@ -10,8 +10,7 @@ public class GOAPPlanner
 
 	/**
 	 * Plan what sequence of actions can fulfill the goal.
-	 * Returns null if a plan could not be found, or a list of the actions
-	 * that must be performed, in order, to fulfill the goal.
+	 * Returns null if a plan could not be found.
 	 */
 	public Queue<GOAPAction> plan(GameObject agent,
 								  HashSet<GOAPAction> availableActions,
@@ -43,7 +42,7 @@ public class GOAPPlanner
 
 		if (!success)
 		{
-			// oh no, we didn't get a plan
+			// No plan!
 			Debug.Log("GOAPPlanner - NO PLAN");
 			return null;
 		}
@@ -72,8 +71,8 @@ public class GOAPPlanner
 			}
 			n = n.parent;
 		}
-		// we now have this action list in correct order
 
+		// we now have this action list in correct order
 		Queue<GOAPAction> queue = new Queue<GOAPAction>();
 		foreach (GOAPAction a in result)
 		{
